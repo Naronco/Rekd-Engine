@@ -13,5 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Interfacedateien">
+      <UniqueIdentifier>{0ef24b78-795d-42b7-9eae-536e9034ba24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enumdateien">
+      <UniqueIdentifier>{0bc883a8-76ae-49ae-b73b-e28cd11d9fe0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Rekd2D.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="IContainer.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Enumdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderableContainer.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="IGame.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="IContainer.cpp">
+      <Filter>Interfacedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
