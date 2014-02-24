@@ -195,9 +195,11 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 	return true;
 }
 
-void Rekd2D::Core::Window::Update(Event* e)
+bool Rekd2D::Core::Window::Update(Event* e)
 {
 	PollEvent(e);
+
+	return Running;
 }
 
 void Rekd2D::Core::Window::Dispose()

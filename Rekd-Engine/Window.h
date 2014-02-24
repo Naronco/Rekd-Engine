@@ -45,12 +45,12 @@ namespace Rekd2D
 			/// <summary>Gets the Window title</summary>
 			char* GetTitle();
 			/// <summary>Updates Windows. Checks for Events. Brings the Render to the Window.</summary>
-			void Update(Event* e);
-			/// <summary>Checks if Window is Running</summary>
-			bool Running;
+			bool Update(Event* e);
 			/// <summary>Checks if Window got Focus</summary>
 			bool Focused;
 		protected:
+			/// <summary>Checks if Window is Running</summary>
+			bool Running;
 			/// <summary>Handle to a SDL Window</summary>
 			SDL_Window* m_Window = 0;
 		};
