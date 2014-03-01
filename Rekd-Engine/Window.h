@@ -1,8 +1,8 @@
 #ifndef REKD_WINDOW_H_
 #define REKD_WINDOW_H_
 
-#include <SDL.h>
 #include <SDL_opengl.h>
+#include <gl/GLU.h>
 #include "Event.h"
 #include "Error.h"
 
@@ -48,11 +48,15 @@ namespace Rekd2D
 			bool Update(Event* e);
 			/// <summary>Checks if Window got Focus</summary>
 			bool Focused;
+			/// <summary>Gets the SDL_GLContext</summary>
+			SDL_GLContext NativeGetContext();
 		protected:
 			/// <summary>Checks if Window is Running</summary>
 			bool Running;
 			/// <summary>Handle to a SDL Window</summary>
 			SDL_Window* m_Window = 0;
+			/// <summary>Handle to a GL Context</summary>
+			SDL_GLContext m_Context = 0;
 		};
 	}
 }

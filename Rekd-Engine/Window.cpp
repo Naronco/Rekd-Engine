@@ -3,7 +3,12 @@
 Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int height)
 {
 	m_Window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
-	if (m_Window) Running = true;
+	if (m_Window != NULL)
+	{
+		Running = true;
+		m_Context = SDL_GL_CreateContext(m_Window);
+		glOrtho(0, width, height, 0, -1, 1);
+	}
 }
 
 void Rekd2D::Core::Window::Show()
@@ -38,7 +43,10 @@ Rekd2D::Core::Error Rekd2D::Core::Window::SetFullscreen(bool fullscreen)
 void Rekd2D::Core::Window::Resize(unsigned int width, unsigned int height)
 {
 	if (m_Window)
+	{
 		SDL_SetWindowSize(m_Window, width, height);
+		glViewport(0, 0, width, height);
+	}
 }
 
 void Rekd2D::Core::Window::SetPosition(int x, int y)
@@ -75,6 +83,10 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		if (ev.window.event == SDL_WINDOWEVENT_FOCUS_LOST)
 		{
 			Focused = false;
+		}
+		if (ev.window.event == SDL_WINDOWEVENT_RESIZED)
+		{
+			glViewport(0, 0, ev.window.data1, ev.window.data2);
 		}
 		break;
 	case SDL_KEYDOWN:
@@ -198,8 +210,13 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 bool Rekd2D::Core::Window::Update(Event* e)
 {
 	PollEvent(e);
-
+	SDL_GL_SwapWindow(m_Window);
 	return Running;
+}
+
+SDL_GLContext Rekd2D::Core::Window::NativeGetContext()
+{
+	return m_Context;
 }
 
 void Rekd2D::Core::Window::Dispose()
