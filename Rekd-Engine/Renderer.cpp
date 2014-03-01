@@ -23,14 +23,14 @@ Rekd2D::Core::Error Rekd2D::Core::Renderer::End()
 	return Error::Success;
 }
 
-void Rekd2D::Core::Renderer::DrawRect(float x, float y, float width, float height)
+void Rekd2D::Core::Renderer::DrawRect(float x, float y, float width, float height, float u, float v, float uvw, float uvh)
 {
-	glTexCoord2f(0, 0);
+	glTexCoord2f(u, v);
 	glVertex2f(x, y);
-	glTexCoord2f(1, 0);
+	glTexCoord2f(uvw, v);
 	glVertex2f(x + width, y);
-	glTexCoord2f(1, 1);
+	glTexCoord2f(uvw, uvh);
 	glVertex2f(x + width, y + height);
-	glTexCoord2f(0, 1);
+	glTexCoord2f(u, uvh);
 	glVertex2f(x, y + height);
 }
