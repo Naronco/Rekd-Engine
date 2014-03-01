@@ -9,18 +9,12 @@ int main(int argc, char *argv[])
 	Window* window = new Window("Test Window", 800, 480);
 	window->Show();
 	Event e;
+	Renderer* renderer = new Renderer(window);
 	while (window->Update(&e))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		glRotatef(1, 0, 0, 1);
-		//glTranslatef(1, 0, 0);
-		glColor3f(1.0f, 0, 0);
-		glBegin(GL_QUADS);
-			glVertex2f(-100, -100);
-			glVertex2f(100, -100);
-			glVertex2f(100, 100);
-			glVertex2f(-100, 100);
-		glEnd();
+		renderer->Begin();
+		renderer->DrawRect(10, 10, 80, 80);
+		renderer->End();
 	}
 	window->Dispose();
 	delete window;

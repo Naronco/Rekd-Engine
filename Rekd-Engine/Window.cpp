@@ -219,6 +219,11 @@ SDL_GLContext Rekd2D::Core::Window::NativeGetContext()
 	return m_Context;
 }
 
+SDL_Window* Rekd2D::Core::Window::GetHandle()
+{
+	return m_Window;
+}
+
 void Rekd2D::Core::Window::Dispose()
 {
 	if (m_Window)

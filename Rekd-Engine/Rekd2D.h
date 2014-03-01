@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include "Window.h"
+#include "Renderer.h"
 
 class Rekd
 {

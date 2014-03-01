@@ -48,12 +48,18 @@
     <ClInclude Include="Event.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IContainer.cpp">
       <Filter>Interfacedateien</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

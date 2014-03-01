@@ -50,6 +50,8 @@ namespace Rekd2D
 			bool Focused;
 			/// <summary>Gets the SDL_GLContext</summary>
 			SDL_GLContext NativeGetContext();
+			/// <summary>Gets the Handle to the SDL Window</summary>
+			SDL_Window* GetHandle();
 		protected:
 			/// <summary>Checks if Window is Running</summary>
 			bool Running;

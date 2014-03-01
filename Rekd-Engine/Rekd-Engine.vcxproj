@@ -94,11 +94,13 @@
     <ClInclude Include="IRenderableContainer.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rekd2D.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IContainer.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
