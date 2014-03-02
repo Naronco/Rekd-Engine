@@ -39,9 +39,6 @@
     <ClInclude Include="Rect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="IGame.h">
-      <Filter>Interfacedateien</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -49,6 +46,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -60,6 +60,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

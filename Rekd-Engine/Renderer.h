@@ -1,6 +1,7 @@
 #ifndef REKD_RENDERER_H_
 #define REKD_RENDERER_H_
 
+#include <SDL.h>
 #include <SDL_opengl.h>
 #include "Error.h"
 #include "Window.h"
@@ -29,6 +30,11 @@ namespace Rekd2D
 			/// <param name="uvw">Width of Texture in percent</param>
 			/// <param name="uvh">Height of Texture in percent</param>
 			void DrawRect(float x, float y, float width, float height, float u = 0, float v = 0, float uvw = 1, float uvh = 1);
+			/// <summary>Converts a Surface to a Texture</summary>
+			/// <param name="surf">Surface to be converted</param>
+			int SurfaceToTexture(SDL_Surface* surf);
+			/// <summary>Disposes the Context</summary>
+			void Dispose();
 		protected:
 			bool m_IsDrawing = false;
 			SDL_GLContext m_Context;

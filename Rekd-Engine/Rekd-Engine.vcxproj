@@ -90,7 +90,7 @@
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="IContainer.h" />
-    <ClInclude Include="IGame.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="IRenderableContainer.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rekd2D.h" />
@@ -99,6 +99,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="IContainer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
