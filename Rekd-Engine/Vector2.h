@@ -2,6 +2,7 @@
 #define REKD_VECTOR2_H_
 
 #include <math.h>
+#include "Matrix3x3.h"
 
 namespace Rekd2D
 {
@@ -156,6 +157,24 @@ template <typename T>
 inline Rekd2D::Core::Vector2<T> operator * (T value, const Rekd2D::Core::Vector2<T>& v)
 {
 	return Vector2<T>(v.X * value, v.Y * value);
+}
+
+template <typename T1, typename T2>
+inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
+{
+	return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
+}
+
+template <typename T1, typename T2>
+inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Matrix3x3<T2> &m, const Rekd2D::Core::Vector2<T1>& v)
+{
+	return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
+}
+
+template <typename T1, typename T2>
+inline Rekd2D::Core::Vector2<T1> operator *= (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
+{
+	return v.Set(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
 }
 
 #endif

@@ -69,9 +69,21 @@ namespace Rekd2D
 				Set(m.m);
 			}
 
-			inline Matrix3x3<T>& Translate(T x, T y)
+			inline Matrix3x3<T>& SetTranslation(T x, T y)
 			{
+				return Set(1, 0, x, 0, 1, y, 0, 0, 1);
+			}
 
+			inline Matrix3x3<T>& SetRotation(T angle)
+			{
+				T s = (T)sin(angle);
+				T c = (T)cos(angle);
+				return Set(c, -s, 0, s, c, 0, 0, 1);
+			}
+
+			inline Matrix3x3<T>& SetScaling(T x, T y)
+			{
+				return Set(x, 0, 0, 0, y, 0, 0, 0, 1);
 			}
 
 			inline Matrix3x3<T>& *= (const Matrix3x3<T>& m)
