@@ -1,6 +1,8 @@
 #ifndef REKD_VECTOR2_H_
 #define REKD_VECTOR2_H_
 
+#include <math.h>
+
 namespace Rekd2D
 {
 	namespace Core
@@ -17,16 +19,130 @@ namespace Rekd2D
 			{
 			}
 
-			inline Vector2<T>& operator +=(const Vector2<T>& x)
+			inline Vector2(const Vector2<T>& v) : X(v.X), Y(v.Y)
 			{
-				X += x.X;
-				Y += x.Y;
+			}
+
+			inline Vector2<T>& Clear()
+			{
+				X = Y = 0;
 				return *this;
 			}
 
-			inline Vector2<T> operator +(const Vector2<T>& x) const
+			inline Vector2<T>& Set(T X_, T Y_)
 			{
-				return Vector2<T>(X + x.X, Y + x.Y);
+				X = X_;
+				Y = Y_;
+				return *this;
+			}
+
+			inline Vector2<T>& Set(const Vector2<T>& v)
+			{
+				X = v.X;
+				Y = v.Y;
+				return *this;
+			}
+
+			inline Vector2<T>& operator += (const Vector2<T>& v)
+			{
+				return Set(X + v.X, Y + v.Y);
+			}
+
+			inline Vector2<T>& operator -= (const Vector2<T>& v)
+			{
+				return Set(X - v.X, Y - v.Y);
+			}
+
+			inline Vector2<T>& operator *= (T value)
+			{
+				return Set(X * value, Y * value);
+			}
+
+			inline Vector2<T>& operator /= (T value)
+			{
+				T invValue = 1.0 / value;
+				return Set(X * invValue, Y * invValue);
+			}
+
+			inline Vector2<T> operator + (const Vector2<T>& v) const
+			{
+				return Vector2<T>(X + v.X, Y + v.Y);
+			}
+
+			inline Vector2<T> operator - (const Vector2<T>& v) const
+			{
+				return Vector2<T>(X - v.X, Y - v.Y);
+			}
+
+			inline Vector2<T> operator * (T value) const
+			{
+				return Vector2<T>(X * value, Y * value);
+			}
+
+			inline Vector2<T> operator / (T value) const
+			{
+				T invValue = 1.0 / value;
+				return Vector2<T>(X * invValue, Y * invValue);
+			}
+
+			inline bool operator == (const Vector2<T>& v) const
+			{
+				return (X == v.X) && (Y == v.Y);
+			}
+
+			inline bool operator != (const Vector2<T>& v) const
+			{
+				return (X != v.X) || (Y != v.Y);
+			}
+
+			inline T Dot(const Vector2<T>& v) const
+			{
+				return (X * v.X) + (Y * v.Y);
+			}
+
+			inline T Cross(const Vector2<T>& v) const
+			{
+				return X * v.Y - Y * v.X;
+			}
+
+			inline T GetSquaredLength() const
+			{
+				return X * X + Y * Y;
+			}
+
+			inline T GetLength() const
+			{
+				return (T) sqrt(X * X + Y * Y);
+			}
+
+			inline T GetSquaredDistance(const Vector2<T>& v)
+			{
+				T xd = v.X - X;
+				T yd = v.Y - Y;
+				return xd * xd + yd * yd;
+			}
+
+			inline T GetDistance(const Vector2<T>& v)
+			{
+				T xd = v.X - X;
+				T yd = v.Y - Y;
+				return (T) sqrt(xd * xd + yd * yd);
+			}
+
+			template <typename S>
+			inline Vector2<T>& Lerp(const Vector2<T>& v, S t)
+			{
+				return (*this += (v - *this) * t);
+			}
+
+			inline Vector2<T>& Normalize()
+			{
+				return (*this *= (1.0 / GetLength()));
+			}
+
+			inline Vector2<T> GetNormalized() const
+			{
+				return (*this * (1.0 / GetLength()));
 			}
 		};
 
@@ -34,6 +150,12 @@ namespace Rekd2D
 		typedef Vector2<int> Vector2I;
 		typedef Vector2<double> Vector2D;
 	}
+}
+
+template <typename T>
+inline Rekd2D::Core::Vector2<T> operator * (T value, const Rekd2D::Core::Vector2<T>& v)
+{
+	return Vector2<T>(v.X * value, v.Y * value);
 }
 
 #endif
