@@ -1,10 +1,14 @@
-﻿Der Buildvorgang wurde am 05.03.2014 14:55:29 gestartet.
-     1>Projekt "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Engine\Rekd-Engine.vcxproj" auf Knoten "2", Build Ziel(e).
+﻿Der Buildvorgang wurde am 05.03.2014 15:17:50 gestartet.
+     1>Projekt "D:\GitRepos\Rekd-Engine\Rekd-Engine\Rekd-Engine.vcxproj" auf Knoten "2", Build Ziel(e).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IGLEW\include /I"SDL2-2.0.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D REKDENGINE_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IGLEW\include /I"SDL2-2.0.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D REKDENGINE_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp IContainer.cpp Renderer.cpp Window.cpp
+         Window.cpp
+         Renderer.cpp
+         IContainer.cpp
          Game.cpp
+         Code wird generiert...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Debug\Rekd-Engine.lib" SDL2.lib SDL2main.lib SDL2_image.lib opengl32.lib glu32.lib glew32.lib /LIBPATH:GLEW\lib\x86 /LIBPATH:"SDL2-2.0.1\lib\x86" /NOLOGO /SUBSYSTEM:WINDOWS Debug\Game.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"D:\GitRepos\Rekd-Engine\Debug\Rekd-Engine.lib" SDL2.lib SDL2main.lib SDL2_image.lib opengl32.lib glu32.lib glew32.lib /LIBPATH:GLEW\lib\x86 /LIBPATH:"SDL2-2.0.1\lib\x86" /NOLOGO /SUBSYSTEM:WINDOWS Debug\Game.obj
          Debug\IContainer.obj
          Debug\Renderer.obj
          Debug\Window.obj
@@ -16,9 +20,9 @@
      1>glu32.lib(GLU32.dll) : warning LNK4221: Die Objektdatei definiert keine zuvor undefinierten ÷ffentlichen Symbole. Sie wird daher von keinem Verkn³pfungsvorgang verwendet, der diese Bibliothek benutzt.
      1>glew32.lib(glew32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR ist bereits in "SDL2.lib(SDL2.dll)" definiert; zweite Definition wird ignoriert.
      1>glew32.lib(glew32.dll) : warning LNK4221: Die Objektdatei definiert keine zuvor undefinierten ÷ffentlichen Symbole. Sie wird daher von keinem Verkn³pfungsvorgang verwendet, der diese Bibliothek benutzt.
-         Rekd-Engine.vcxproj -> C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Debug\Rekd-Engine.lib
-     1>Die Erstellung des Projekts "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Engine\Rekd-Engine.vcxproj" ist abgeschlossen, Build Ziel(e).
+         Rekd-Engine.vcxproj -> D:\GitRepos\Rekd-Engine\Debug\Rekd-Engine.lib
+     1>Die Erstellung des Projekts "D:\GitRepos\Rekd-Engine\Rekd-Engine\Rekd-Engine.vcxproj" ist abgeschlossen, Build Ziel(e).
 
 Build erfolgreich.
 
-Verstrichene Zeit 00:00:00.83
+Verstrichene Zeit 00:00:07.11

@@ -1,14 +1,18 @@
-﻿Der Buildvorgang wurde am 05.03.2014 14:56:03 gestartet.
-     1>Projekt "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" auf Knoten "2", Build Ziel(e).
+﻿Der Buildvorgang wurde am 05.03.2014 15:17:57 gestartet.
+     1>Projekt "D:\GitRepos\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" auf Knoten "2", Build Ziel(e).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\Rekd-Engine\SDL2-2.0.1\include" /I"..\Rekd-Engine" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game1.cpp main.cpp
          main.cpp
-     1>c:\users\johannes roth\documents\projekte\rekd-engine\rekd-engine\rekd2d.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "gl/glew.h": No such file or directory
          Game1.cpp
-     1>c:\users\johannes roth\documents\projekte\rekd-engine\rekd-engine\rekd2d.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "gl/glew.h": No such file or directory
          Code wird generiert...
-     1>Die Erstellung des Projekts "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" ist abgeschlossen, Build Ziel(e) -- FEHLER.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitRepos\Rekd-Engine\Debug\Rekd-Test.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Debug /LIBPATH:"..\Rekd-Engine\SDL2-2.0.1\lib\x86" "Rekd-Engine.lib" SDL2.lib SDL2main.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\GitRepos\Rekd-Engine\Debug\Rekd-Test.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitRepos\Rekd-Engine\Debug\Rekd-Test.lib" /MACHINE:X86 Debug\Game1.obj
+         Debug\main.obj
+         "D:\GitRepos\Rekd-Engine\Debug\Rekd-Engine.lib"
+     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: Standardbibliothek "msvcrt.lib" steht in Konflikt mit anderen Bibliotheken; /NODEFAULTLIB:Bibliothek verwenden.
+         Rekd-Test.vcxproj -> D:\GitRepos\Rekd-Engine\Debug\Rekd-Test.exe
+     1>Die Erstellung des Projekts "D:\GitRepos\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" ist abgeschlossen, Build Ziel(e).
 
-Fehler beim Buildvorgang.
+Build erfolgreich.
 
-Verstrichene Zeit 00:00:00.57
+Verstrichene Zeit 00:00:02.20
