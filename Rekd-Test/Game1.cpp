@@ -22,7 +22,11 @@ void Game1::Update()
 
 void Game1::Render()
 {
-	m_Renderer->Begin();
-	m_Renderer->DrawRect(10, 10, 80, 80);
-	m_Renderer->End();
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(90, 10);
+	glVertex2f(70, 10);
+	glVertex2f(50, 80);
+	glVertex2f(40, 40);
+	glEnd();
 }
