@@ -4,7 +4,6 @@ Rekd2D::Core::Renderer::Renderer(Window* window)
 {
 	m_Context = window->NativeGetContext();
 	m_Window = window;
-	glGenFramebuffers(1, &m_FrameBuffer);
 }
 
 Rekd2D::Core::Error Rekd2D::Core::Renderer::Begin()
