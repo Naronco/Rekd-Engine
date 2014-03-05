@@ -1,0 +1,14 @@
+﻿Der Buildvorgang wurde am 05.03.2014 14:56:03 gestartet.
+     1>Projekt "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\Rekd-Engine\SDL2-2.0.1\include" /I"..\Rekd-Engine" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game1.cpp main.cpp
+         main.cpp
+     1>c:\users\johannes roth\documents\projekte\rekd-engine\rekd-engine\rekd2d.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "gl/glew.h": No such file or directory
+         Game1.cpp
+     1>c:\users\johannes roth\documents\projekte\rekd-engine\rekd-engine\rekd2d.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "gl/glew.h": No such file or directory
+         Code wird generiert...
+     1>Die Erstellung des Projekts "C:\Users\Johannes Roth\Documents\Projekte\Rekd-Engine\Rekd-Test\Rekd-Test.vcxproj" ist abgeschlossen, Build Ziel(e) -- FEHLER.
+
+Fehler beim Buildvorgang.
+
+Verstrichene Zeit 00:00:00.57
