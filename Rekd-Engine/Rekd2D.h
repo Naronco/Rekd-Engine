@@ -7,6 +7,7 @@
 #include <string>
 #include "Window.h"
 #include "Renderer.h"
+#include "Vector2.h"
 
 class Rekd
 {
