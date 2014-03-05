@@ -4,12 +4,13 @@ Rekd2D::Core::Renderer::Renderer(Window* window)
 {
 	m_Context = window->NativeGetContext();
 	m_Window = window;
+	glGenFramebuffers(1, &m_FrameBuffer);
 }
 
 Rekd2D::Core::Error Rekd2D::Core::Renderer::Begin()
 {
 	if (m_IsDrawing) return Error::Failed;
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 	m_IsDrawing = true;
 	glBegin(GL_QUADS);
 	return Error::Success;

@@ -2,7 +2,6 @@
 #define _GAME1_H_
 
 #include <Game.h>
-#include <Rekd2D.h>
 
 using namespace Rekd2D::Core;
 

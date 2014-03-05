@@ -1,8 +1,9 @@
 #ifndef REKD_RENDERER_H_
 #define REKD_RENDERER_H_
 
-#include <SDL.h>
+#include <gl/glew.h>
 #include <SDL_opengl.h>
+#include <SDL.h>
 #include "Error.h"
 #include "Window.h"
 
@@ -39,6 +40,7 @@ namespace Rekd2D
 			bool m_IsDrawing = false;
 			SDL_GLContext m_Context;
 			Window* m_Window;
+			GLuint m_FrameBuffer;
 		};
 	}
 }
