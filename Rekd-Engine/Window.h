@@ -1,7 +1,7 @@
 #ifndef REKD_WINDOW_H_
 #define REKD_WINDOW_H_
 
-#include <glew/glew.h>
+#include <GL/glew.h>
 #include "Event.h"
 #include "Error.h"
 

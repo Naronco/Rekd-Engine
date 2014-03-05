@@ -1,7 +1,7 @@
 #ifndef REKD_RENDERER_H_
 #define REKD_RENDERER_H_
 
-#include <glew.h>
+#include <GL/glew.h>
 #include <SDL_opengl.h>
 #include <SDL.h>
 #include "Error.h"

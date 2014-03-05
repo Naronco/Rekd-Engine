@@ -1,7 +1,7 @@
 #ifndef REKD_REKD_2D_H_
 #define REKD_REKD_2D_H_
 
-#include <glew/glew.h>
+#include <GL/glew.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>

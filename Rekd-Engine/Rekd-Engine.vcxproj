@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;REKDENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>GLEW\include;SDL2-2.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>SDL2-2.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -63,7 +63,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>GLEW\lib\x86;SDL2-2.0.1\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>SDL2-2.0.1\lib\x86</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <ProjectReference />
