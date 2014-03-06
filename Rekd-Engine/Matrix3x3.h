@@ -1,5 +1,5 @@
-#ifndef REKD_VECTOR2_H_
-#define REKD_VECTOR2_H_
+#ifndef REKD_MATRIX3X3_H_
+#define REKD_MATRIX3X3_H_
 
 #include <math.h>
 
