@@ -1,6 +1,7 @@
 #ifndef _GAME1_H_
 #define _GAME1_H_
 
+#include <Rekd2D.h>
 #include <Game.h>
 
 using namespace Rekd2D::Core;
@@ -14,6 +15,9 @@ public:
 	void Update();
 	void Render();
 	void Unload();
+
+private:
+	BezierCurve b;
 };
 
 #endif

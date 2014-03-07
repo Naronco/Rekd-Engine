@@ -6,6 +6,10 @@ Game1::Game1()
 
 void Game1::Init()
 {
+	b.AddPoint(Vector2F(0, 0));
+	b.AddPoint(Vector2F(100, 500));
+	b.AddPoint(Vector2F(300, 300));
+	b.AddPoint(Vector2F(100, 0));
 }
 
 void Game1::Load()
@@ -24,9 +28,10 @@ void Game1::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBegin(GL_LINE_STRIP);
-	glVertex2f(90, 10);
-	glVertex2f(70, 10);
-	glVertex2f(50, 80);
-	glVertex2f(40, 40);
+	for (int i = 0; i < 101; i++)
+	{
+		Vector2F v = b.GetPoint(i * 0.01f);
+		glVertex2f(v.X, v.Y);
+	}
 	glEnd();
 }
