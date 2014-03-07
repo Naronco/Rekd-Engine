@@ -1,7 +1,6 @@
 #ifndef REKD_MATH_H_
 #define REKD_MATH_H_
-
-#include <math.h>
+#include <cmath>
 
 namespace Rekd2D
 {
@@ -12,6 +11,7 @@ namespace Rekd2D
 		public:
 			Math();
 			static unsigned int Factorial(unsigned int n);
+			static double Pow(double x, double y);
 		protected:
 		};
 	}
