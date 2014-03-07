@@ -113,7 +113,7 @@ namespace Rekd2D
 
 			inline T GetLength() const
 			{
-				return (T) sqrt(X * X + Y * Y);
+				return (T)sqrt(X * X + Y * Y);
 			}
 
 			inline T GetSquaredDistance(const Vector2<T>& v)
@@ -127,7 +127,7 @@ namespace Rekd2D
 			{
 				T xd = v.X - X;
 				T yd = v.Y - Y;
-				return (T) sqrt(xd * xd + yd * yd);
+				return (T)sqrt(xd * xd + yd * yd);
 			}
 
 			template <typename S>
@@ -150,31 +150,31 @@ namespace Rekd2D
 		typedef Vector2<float> Vector2F;
 		typedef Vector2<int> Vector2I;
 		typedef Vector2<double> Vector2D;
+
+		template <typename T>
+		inline Rekd2D::Core::Vector2<T> operator * (T value, const Rekd2D::Core::Vector2<T>& v)
+		{
+			return Vector2<T>(v.X * value, v.Y * value);
+		}
+
+		template <typename T1, typename T2>
+		inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
+		{
+			return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
+		}
+
+		template <typename T1, typename T2>
+		inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Matrix3x3<T2> &m, const Rekd2D::Core::Vector2<T1>& v)
+		{
+			return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
+		}
+
+		template <typename T1, typename T2>
+		inline Rekd2D::Core::Vector2<T1> operator *= (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
+		{
+			return v.Set(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
+		}
 	}
-}
-
-template <typename T>
-inline Rekd2D::Core::Vector2<T> operator * (T value, const Rekd2D::Core::Vector2<T>& v)
-{
-	return Vector2<T>(v.X * value, v.Y * value);
-}
-
-template <typename T1, typename T2>
-inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
-{
-	return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
-}
-
-template <typename T1, typename T2>
-inline Rekd2D::Core::Vector2<T1> operator * (const Rekd2D::Core::Matrix3x3<T2> &m, const Rekd2D::Core::Vector2<T1>& v)
-{
-	return Vector2<T1>(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
-}
-
-template <typename T1, typename T2>
-inline Rekd2D::Core::Vector2<T1> operator *= (const Rekd2D::Core::Vector2<T1>& v, const Rekd2D::Core::Matrix3x3<T2> &m)
-{
-	return v.Set(v.X * m.m00 + v.Y * m.m01 + m.m02, v.X * m.m10 + v.Y * m.m11 + m.m12);
 }
 
 #endif
