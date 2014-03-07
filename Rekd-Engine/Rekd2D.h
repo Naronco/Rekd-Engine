@@ -8,6 +8,7 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Vector2.h"
+#include "BezierCurve.h"
 
 class Rekd
 {
