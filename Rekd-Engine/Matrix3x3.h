@@ -86,10 +86,10 @@ namespace Rekd2D
 				return Set(x, 0, 0, 0, y, 0, 0, 0, 1);
 			}
 
-			inline Matrix3x3<T>& *= (const Matrix3x3<T>& m)
+			inline Matrix3x3<T>& operator *= (const Matrix3x3<T>& m)
 			{
 				Matrix3x3<T> r;
-				
+
 				for (int y = 0; y < 3; y++)
 				{
 					for (int x = 0; x < 3; x++)
@@ -101,7 +101,7 @@ namespace Rekd2D
 				return Set(r);
 			}
 
-			inline Matrix3x3<T> * (const Matrix3x3<T>& m) const
+			inline Matrix3x3<T> operator * (const Matrix3x3<T>& m) const
 			{
 				Matrix3x3<T> r;
 
