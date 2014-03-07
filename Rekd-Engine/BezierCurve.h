@@ -2,7 +2,8 @@
 #define REKD_BEZIERCURVE_H_
 #include <vector>
 #include "Vector2.h"
-#include "Math.h"
+#include <math.h>
+#include "UtilMath.h"
 
 namespace Rekd2D
 {
