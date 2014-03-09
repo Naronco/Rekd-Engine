@@ -4,6 +4,7 @@
 #include "Vector2.h"
 #include <math.h>
 #include "UtilMath.h"
+#include <iostream>
 
 namespace Rekd2D
 {
