@@ -1,6 +1,7 @@
 #ifndef REKD_REKD_2D_H_
 #define REKD_REKD_2D_H_
 
+#include <Box2D\Box2D.h>
 #include <SDL_opengl.h>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -9,6 +10,7 @@
 #include "Renderer.h"
 #include "Vector2.h"
 #include "BezierCurve.h"
+#include "UtilMath.h"
 
 class Rekd
 {
