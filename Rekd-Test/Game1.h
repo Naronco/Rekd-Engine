@@ -3,6 +3,8 @@
 
 #include <Rekd2D.h>
 #include <Game.h>
+#include <iostream>
+#include <Random.h>
 
 using namespace Rekd2D::Core;
 
@@ -17,7 +19,10 @@ public:
 	void Unload();
 
 private:
-	BezierCurve b;
+	Random m_Random = 0;
+	b2Body* ground = 0;
+	b2Body* body = 0;
+	b2World* world = 0;
 };
 
 #endif
