@@ -10,7 +10,6 @@ namespace Rekd2D
 		public:
 			UtilMath();
 			static unsigned int Factorial(unsigned int n);
-		protected:
 		};
 	}
 }
