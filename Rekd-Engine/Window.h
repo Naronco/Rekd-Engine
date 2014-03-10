@@ -51,6 +51,9 @@ namespace Rekd2D
 			SDL_GLContext NativeGetContext();
 			/// <summary>Gets the Handle to the SDL Window</summary>
 			SDL_Window* GetHandle();
+
+			int GetWidth();
+			int GetHeight();
 		protected:
 			/// <summary>Checks if Window is Running</summary>
 			bool Running;
@@ -58,6 +61,9 @@ namespace Rekd2D
 			SDL_Window* m_Window = 0;
 			/// <summary>Handle to a GL Context</summary>
 			SDL_GLContext m_Context = 0;
+
+			int m_Width;
+			int m_Height;
 		};
 	}
 }

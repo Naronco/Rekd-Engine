@@ -87,6 +87,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		if (ev.window.event == SDL_WINDOWEVENT_RESIZED)
 		{
 			glViewport(0, 0, ev.window.data1, ev.window.data2);
+			m_Width = ev.window.data1;
+			m_Height = ev.window.data2;
 		}
 		break;
 	case SDL_KEYDOWN:
@@ -203,7 +205,7 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.User.Data2 = ev.user.data2;
 		break;
 	}
-	e = &ne;
+	*e = ne;
 	return true;
 }
 
@@ -230,4 +232,14 @@ void Rekd2D::Core::Window::Dispose()
 	{
 		SDL_DestroyWindow(m_Window);
 	}
+}
+
+int Rekd2D::Core::Window::GetWidth()
+{
+	return m_Width;
+}
+
+int Rekd2D::Core::Window::GetHeight()
+{
+	return m_Height;
 }
