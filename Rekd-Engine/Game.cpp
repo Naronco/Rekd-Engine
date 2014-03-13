@@ -10,20 +10,28 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 	Load();
 	Event e;
 	m_Window->Show();
+	unsigned int last = 0, delta = 0;
+	unsigned int now;
 	while (m_Window->Update(&e))
 	{
+		now = SDL_GetTicks();
+		if (now > last)
+		{
+			delta = now - last;
+			last = now;
+		}
+		MouseState s = Mouse::GetState();
 		if (e.Type == Enum::EventType::MouseMove)
 		{
-			MouseState s = Mouse::GetState();
 			s.X = (int)((e.MouseMove.DestinationX + e.MouseMove.RelativeX) / (float)m_Window->GetWidth() * width);
 			s.Y = (int)((e.MouseMove.DestinationY + e.MouseMove.RelativeY) / (float)m_Window->GetHeight() * height);
 			s.relX = e.MouseMove.RelativeX;
 			s.relY = e.MouseMove.RelativeY;
+
 			Mouse::SetState(s);
 		}
 		else if (e.Type == Enum::EventType::MouseClick)
 		{
-			MouseState s = Mouse::GetState();
 			s.X = (int)(e.MouseButton.X / (float)m_Window->GetWidth() * width);
 			s.Y = (int)(e.MouseButton.Y / (float)m_Window->GetHeight() * height);
 			if (e.MouseButton.Button < 4)
@@ -32,15 +40,14 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		}
 		else if (e.Type == Enum::EventType::MouseRelease)
 		{
-			MouseState s = Mouse::GetState();
 			s.X = (int)(e.MouseButton.X / (float)m_Window->GetWidth() * width);
 			s.Y = (int)(e.MouseButton.Y / (float)m_Window->GetHeight() * height);
 			if (e.MouseButton.Button < 4)
 				s.mouseButtons[e.MouseButton.Button] = false;
 			Mouse::SetState(s);
 		}
-		Update();
-		Render();
+		Update(delta);
+		Render(delta);
 	}
 	Unload();
 	m_Renderer->Dispose();

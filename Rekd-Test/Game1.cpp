@@ -7,22 +7,16 @@ Game1::Game1()
 void Game1::Init()
 {
 	{
-		b2Vec2 grav(0.0f, 10);
+		b2Vec2 grav(0.0f, 9.8f);
 		world = new b2World(grav);
 		b2PolygonShape shape;
 		shape.SetAsBox(40, 10);
 
 		b2BodyDef groundBodyDef;
-		groundBodyDef.position.Set(-1, 30);
+		groundBodyDef.position.Set(40, 50);
 		groundBodyDef.type = b2_staticBody;
 		ground = world->CreateBody(&groundBodyDef);
 		ground->CreateFixture(&shape, 0.0f);
-
-		b2BodyDef groundBodyDef2;
-		groundBodyDef2.position.Set(10, 50);
-		groundBodyDef2.type = b2_staticBody;
-		ground2 = world->CreateBody(&groundBodyDef2);
-		ground2->CreateFixture(&shape, 0.0f);
 	}
 }
 
@@ -34,8 +28,6 @@ void Game1::AddCube(int x, int y, int rx, int ry)
 	bd.type = b2_dynamicBody;
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
 	bd.linearVelocity = b2Vec2(rx, ry);
-	float deg = atan2(x - rx, y - ry);
-	bd.angularVelocity = deg;
 	bd.userData = "cube";
 	b2Body* body = world->CreateBody(&bd);
 	b2FixtureDef fixDef;
@@ -77,33 +69,30 @@ void Game1::Unload()
 	}
 	bodys.clear();
 	world->DestroyBody(ground);
-	world->DestroyBody(ground2);
 	delete world;
 }
 
-void Game1::Update()
+void Game1::Update(unsigned int time)
 {
 	MouseState cState = Mouse::GetState();
-	world->Step(1 / 60.0f, 6, 2);
-	if (cState.mouseButtons[0] && !oldState.mouseButtons[0])
+	world->Step(time * 0.001f, 6, 2);
+	if (cState.mouseButtons[2] && !oldState.mouseButtons[2])
 	{
 		AddCube(cState.X, cState.Y, cState.relX, cState.relY);
 	}
 	if (cState.mouseButtons[1] && !oldState.mouseButtons[1])
 	{
-		//AddCircle(cState.X, cState.Y);
-		AddCube(cState.X, cState.Y, cState.relX, cState.relY);
+		AddCircle(cState.X, cState.Y, cState.relX * 10, cState.relY * 10);
 	}
 	oldState = cState;
 }
 
-void Game1::Render()
+void Game1::Render(unsigned int time)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	//LoadIdentity();
 
 	b2Vec2 gpos = ground->GetPosition();
-	b2Vec2 gpos2 = ground2->GetPosition();
 
 	glBegin(GL_QUADS);
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -114,43 +103,37 @@ void Game1::Render()
 	glVertex2f(gpos.x * 10 - 400, gpos.y * 10 + 100);
 	glEnd();
 
-	glBegin(GL_QUADS);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glVertex2f(gpos2.x * 10 - 400, gpos2.y * 10 - 100);
-	glVertex2f(gpos2.x * 10 + 400, gpos2.y * 10 - 100);
-	glColor3f(0.5f, 0.5f, 0.5f);
-	glVertex2f(gpos2.x * 10 + 400, gpos2.y * 10 + 100);
-	glVertex2f(gpos2.x * 10 - 400, gpos2.y * 10 + 100);
-	glEnd();
-
 	for (unsigned int i = 0; i < bodys.size(); i++)
 	{
 		float angle = bodys[i]->GetAngle() * 180 / 3.141f;
 		b2Vec2 pos = bodys[i]->GetPosition();
 
-		glTranslatef(pos.x * 10, pos.y * 10, 0);
-		glRotatef(angle, 0, 0, 1);
-		glColor3f(0.0f, 0.7f, 0.0f);
-		if (bodys[i]->GetUserData() == "cube")
+		if (pos.x >= -10 && pos.y >= -10 && pos.x <= 90 && pos.y <= 58)
 		{
-			glBegin(GL_QUADS);
-			glVertex2f(-50, -50);
-			glVertex2f(50, -50);
-			glVertex2f(50, 50);
-			glVertex2f(-50, 50);
-			glEnd();
-		}
-		else
-		{
-			glBegin(GL_TRIANGLE_FAN);
-			glVertex2f(0, 0);
-			for (int i = 0; i <= 16; i++)
+			glTranslatef(pos.x * 10, pos.y * 10, 0);
+			glRotatef(angle, 0, 0, 1);
+			glColor3f(0.0f, 0.7f, 0.0f);
+			if (bodys[i]->GetUserData() == "cube")
 			{
-				glVertex2f(sinf(i / 16.0f * 3.1415926f * 2) * 50, cosf(i / 16.0f * 3.1415926f * 2) * 50);
+				glBegin(GL_QUADS);
+				glVertex2f(-50, -50);
+				glVertex2f(50, -50);
+				glVertex2f(50, 50);
+				glVertex2f(-50, 50);
+				glEnd();
 			}
-			glEnd();
+			else
+			{
+				glBegin(GL_TRIANGLE_FAN);
+				glVertex2f(0, 0);
+				for (int i = 0; i <= 60; i++)
+				{
+					glVertex2f(sinf(i / 60.0f * 3.1415926f * 2) * 50, cosf(i / 60.0f * 3.1415926f * 2) * 50);
+				}
+				glEnd();
+			}
+			glRotatef(-angle, 0, 0, 1);
+			glTranslatef(-pos.x * 10, -pos.y * 10, 0);
 		}
-		glRotatef(-angle, 0, 0, 1);
-		glTranslatef(-pos.x * 10, -pos.y * 10, 0);
 	}
 }
