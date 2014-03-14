@@ -21,6 +21,7 @@ namespace Rekd2D
 			///<param name="width">Window width</param>
 			///<param name="height">Window height</param>
 			void Run(char* title, unsigned int width, unsigned int height);
+
 		protected:
 			Renderer* m_Renderer;
 			Window* m_Window;

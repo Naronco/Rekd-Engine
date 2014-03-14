@@ -93,13 +93,13 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		break;
 	case SDL_KEYDOWN:
 		ne.Type = EventType::KeyDown;
-		ne.Keyboard.KeyCode = ev.key.keysym.sym;
+		ne.Keyboard.KeyCode = (unsigned char)ev.key.keysym.sym;
 		ne.Keyboard.Modifiers = ev.key.keysym.mod;
 		ne.Window = ev.key.windowID;
 		break;
 	case SDL_KEYUP:
 		ne.Type = EventType::KeyUp;
-		ne.Keyboard.KeyCode = ev.key.keysym.sym;
+		ne.Keyboard.KeyCode = (unsigned char)ev.key.keysym.sym;
 		ne.Keyboard.Modifiers = ev.key.keysym.mod;
 		ne.Window = ev.key.windowID;
 		break;

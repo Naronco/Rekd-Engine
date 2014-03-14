@@ -7,8 +7,8 @@ namespace Rekd2D
 		struct MouseState
 		{
 			int X, Y;
-			int relX, relY;
-			bool mouseButtons[4];
+			int RelX, RelY;
+			bool MouseButtons[4];
 		};
 	}
 }

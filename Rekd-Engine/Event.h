@@ -63,7 +63,7 @@ namespace Rekd2D
 		struct KeyboardData
 		{
 			unsigned short Modifiers;
-			int KeyCode;
+			unsigned char KeyCode;
 		};
 
 		struct MouseButtonData
@@ -100,7 +100,7 @@ namespace Rekd2D
 			void* Data1;
 			void* Data2;
 		};
-		
+
 		struct Event
 		{
 			Enum::EventType Type;

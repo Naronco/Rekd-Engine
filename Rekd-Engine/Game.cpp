@@ -25,8 +25,8 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		{
 			s.X = (int)((e.MouseMove.DestinationX + e.MouseMove.RelativeX) / (float)m_Window->GetWidth() * width);
 			s.Y = (int)((e.MouseMove.DestinationY + e.MouseMove.RelativeY) / (float)m_Window->GetHeight() * height);
-			s.relX = e.MouseMove.RelativeX;
-			s.relY = e.MouseMove.RelativeY;
+			s.RelX = e.MouseMove.RelativeX;
+			s.RelY = e.MouseMove.RelativeY;
 
 			Mouse::SetState(s);
 		}
@@ -35,7 +35,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 			s.X = (int)(e.MouseButton.X / (float)m_Window->GetWidth() * width);
 			s.Y = (int)(e.MouseButton.Y / (float)m_Window->GetHeight() * height);
 			if (e.MouseButton.Button < 4)
-				s.mouseButtons[e.MouseButton.Button] = true;
+				s.MouseButtons[e.MouseButton.Button] = true;
 			Mouse::SetState(s);
 		}
 		else if (e.Type == Enum::EventType::MouseRelease)
@@ -43,7 +43,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 			s.X = (int)(e.MouseButton.X / (float)m_Window->GetWidth() * width);
 			s.Y = (int)(e.MouseButton.Y / (float)m_Window->GetHeight() * height);
 			if (e.MouseButton.Button < 4)
-				s.mouseButtons[e.MouseButton.Button] = false;
+				s.MouseButtons[e.MouseButton.Button] = false;
 			Mouse::SetState(s);
 		}
 		Update(delta);

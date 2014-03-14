@@ -12,6 +12,7 @@ namespace Rekd2D
 		public:
 			static MouseState GetState();
 			static void SetState(MouseState s);
+
 		protected:
 			static MouseState m_State;
 		};
