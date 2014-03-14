@@ -74,15 +74,16 @@ void Game1::Unload()
 
 void Game1::Update(unsigned int time)
 {
-	MouseState cState = Mouse::GetState();
+	KeyboardState cState = Keyboard::GetState();
+	MouseState mState = Mouse::GetState();
 	world->Step(time * 0.001f, 6, 2);
-	if (cState.mouseButtons[2] && !oldState.mouseButtons[2])
+	if (cState.IsKeyDown(SDLK_y) && !oldState.IsKeyDown(SDLK_y))
 	{
-		AddCube(cState.X, cState.Y, cState.relX, cState.relY);
+		AddCube(mState.X, mState.Y, mState.RelX, mState.RelY);
 	}
-	if (cState.mouseButtons[1] && !oldState.mouseButtons[1])
+	if (cState.IsKeyDown(SDLK_x) && !oldState.IsKeyDown(SDLK_x))
 	{
-		AddCircle(cState.X, cState.Y, cState.relX * 10, cState.relY * 10);
+		AddCircle(mState.X, mState.Y, mState.RelX * 10, mState.RelY * 10);
 	}
 	oldState = cState;
 }

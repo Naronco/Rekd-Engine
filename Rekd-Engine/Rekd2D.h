@@ -11,8 +11,8 @@
 #include "Vector2.h"
 #include "BezierCurve.h"
 #include "UtilMath.h"
-#include "MouseState.h"
 #include "Mouse.h"
+#include "Keyboard.h"
 
 class Rekd
 {

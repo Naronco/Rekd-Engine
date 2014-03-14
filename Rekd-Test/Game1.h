@@ -25,7 +25,7 @@ private:
 	b2Body* ground = 0;
 	std::vector<b2Body*> bodys;
 	b2World* world = 0;
-	MouseState oldState;
+	KeyboardState oldState;
 };
 
 #endif
