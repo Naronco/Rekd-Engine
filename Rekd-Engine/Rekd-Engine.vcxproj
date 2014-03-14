@@ -62,7 +62,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_net.lib;opengl32.lib;glu32.lib;glew32.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>SDL2-2.0.1\lib\x86</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Lib>
@@ -87,11 +87,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BezierCurve.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="IContainer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IRenderableContainer.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="KeyboardState.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseState.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="UtilMath.h" />
+    <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rekd2D.h" />
     <ClInclude Include="Renderer.h" />
@@ -99,8 +107,13 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BezierCurve.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IContainer.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="UtilMath.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
