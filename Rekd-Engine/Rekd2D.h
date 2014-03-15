@@ -15,6 +15,7 @@
 #include "Mouse.h"
 #include "Keyboard.h"
 #include "World.h"
+#include "Rect.h"
 
 class Rekd
 {

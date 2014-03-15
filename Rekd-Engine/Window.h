@@ -36,15 +36,15 @@ namespace Rekd2D
 			/// <param name="x">Left position relative to top-left</param>
 			/// <param name="y">Top position relative to top-left</param>
 			void SetPosition(int x, int y);
-			/// <summary>Polls latest SDL event</summary>
+			/// <summary>Polls all SDL events</summary>
 			bool PollEvent(Event* e);
 			/// <summary>Sets the Window title</summary>
 			/// <param name="title">Title</param>
 			void SetTitle(char* title);
 			/// <summary>Gets the Window title</summary>
 			char* GetTitle();
-			/// <summary>Updates Windows. Checks for Events. Brings the Render to the Window.</summary>
-			bool Update(Event* e);
+			/// <summary>Updates Windows. Brings the Render to the Window.</summary>
+			bool Update();
 			/// <summary>Checks if Window got Focus</summary>
 			bool Focused;
 			/// <summary>Gets the SDL_GLContext</summary>

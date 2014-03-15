@@ -5,9 +5,13 @@ Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int heigh
 	m_Window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 	if (m_Window != NULL)
 	{
+		m_Width = width;
+		m_Height = height;
 		Running = true;
 		m_Context = SDL_GL_CreateContext(m_Window);
+		glMatrixMode(GL_PROJECTION);
 		glOrtho(0, width, height, 0, -1, 1);
+		glMatrixMode(GL_MODELVIEW);
 	}
 }
 
@@ -209,9 +213,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 	return true;
 }
 
-bool Rekd2D::Core::Window::Update(Event* e)
+bool Rekd2D::Core::Window::Update()
 {
-	PollEvent(e);
 	SDL_GL_SwapWindow(m_Window);
 	return Running;
 }

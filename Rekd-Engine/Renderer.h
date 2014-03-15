@@ -3,8 +3,11 @@
 
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include "Rect.h"
+#include "Color.h"
 #include "Error.h"
 #include "Window.h"
+#include "Vector2.h"
 
 namespace Rekd2D
 {
@@ -16,20 +19,25 @@ namespace Rekd2D
 			/// <summary>Creates a Renderer</summary>
 			/// <param name="window">Reference to a Window</param>
 			Renderer(Window* window);
-			/// <summary>Begins drawing to the window</summary>
-			Error Begin();
-			/// <summary>Renders output to the window</summary>
-			Error End();
-			/// <summary>Renders a Rectangle to output</summary>
-			/// <param name="x">X-Position relative to top left</param>
-			/// <param name="y">Y-Position relative to top left</param>
-			/// <param name="width">Width of the Rectangle</param>
-			/// <param name="height">Height of the Rectangle</param>
-			/// <param name="u">Texture Coordinate X</param>
-			/// <param name="v">Texture Coordinate Y</param>
-			/// <param name="uvw">Width of Texture in percent</param>
-			/// <param name="uvh">Height of Texture in percent</param>
-			void DrawRect(float x, float y, float width, float height, float u = 0, float v = 0, float uvw = 1, float uvh = 1);
+			/// <summary>Clears the window</summary>
+			/// <param name="c">Color to be cleared</param>
+			void Clear(Color c);
+			/// <summary>Renders a Rectangle</summary>
+			/// <param name="rect">Position and Size</param>
+			/// <param name="c">Color</param>
+			void DrawRect(RectF rect, Color c);
+			/// <summary>Renders a Rectangle</summary>
+			/// <param name="rect">Position and Size</param>
+			/// <param name="dest">Clipped source</param>
+			/// <param name="c">Color</param>
+			void DrawRect(RectF rect, RectF dest, Color c);
+			/// <summary>Renders a Rectangle</summary>
+			/// <param name="rect">Position and Size</param>
+			/// <param name="dest">Clipped source</param>
+			/// <param name="c">Color</param>
+			/// <param name="rota">Rotation</param>
+			/// <param name="origin">Rotiation origin</param>
+			void DrawRect(RectF rect, RectF dest, Color c, float rota, Vector2F origin);
 			/// <summary>Converts a Surface to a Texture</summary>
 			/// <param name="surf">Surface to be converted</param>
 			int SurfaceToTexture(SDL_Surface* surf);
@@ -39,6 +47,7 @@ namespace Rekd2D
 			bool m_IsDrawing = false;
 			SDL_GLContext m_Context;
 			Window* m_Window;
+			unsigned int m_RectId;
 		};
 	}
 }

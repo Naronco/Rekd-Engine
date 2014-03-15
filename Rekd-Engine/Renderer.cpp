@@ -6,33 +6,67 @@ Rekd2D::Core::Renderer::Renderer(Window* window)
 	m_Window = window;
 }
 
-Rekd2D::Core::Error Rekd2D::Core::Renderer::Begin()
+void Rekd2D::Core::Renderer::Clear(Color c)
 {
-	if (m_IsDrawing) return Error::Failed;
+	glClearColor(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	m_IsDrawing = true;
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+
+void Rekd2D::Core::Renderer::DrawRect(RectF rect, Color c)
+{
+	glColor4f(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
+	glTranslatef(rect.X, rect.Y, 0);
 	glBegin(GL_QUADS);
-	return Error::Success;
-}
-
-Rekd2D::Core::Error Rekd2D::Core::Renderer::End()
-{
-	if (!m_IsDrawing) return Error::Failed;
-	m_IsDrawing = false;
+	glTexCoord2f(0, 0);
+	glVertex2f(0, 0);
+	glTexCoord2f(1, 0);
+	glVertex2f(rect.Width, 0);
+	glTexCoord2f(1, 1);
+	glVertex2f(rect.Width, rect.Height);
+	glTexCoord2f(0, 1);
+	glVertex2f(0, rect.Height);
 	glEnd();
-	return Error::Success;
+	glTranslatef(-rect.X, -rect.Y, 0);
 }
 
-void Rekd2D::Core::Renderer::DrawRect(float x, float y, float width, float height, float u, float v, float uvw, float uvh)
+void Rekd2D::Core::Renderer::DrawRect(RectF rect, RectF dest, Color c)
 {
-	glTexCoord2f(u, v);
-	glVertex2f(x, y);
-	glTexCoord2f(uvw, v);
-	glVertex2f(x + width, y);
-	glTexCoord2f(uvw, uvh);
-	glVertex2f(x + width, y + height);
-	glTexCoord2f(u, uvh);
-	glVertex2f(x, y + height);
+	glColor4f(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
+	glTranslatef(rect.X, rect.Y, 0);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0);
+	glVertex2f(0, 0);
+	glTexCoord2f(1, 0);
+	glVertex2f(rect.Width, 0);
+	glTexCoord2f(1, 1);
+	glVertex2f(rect.Width, rect.Height);
+	glTexCoord2f(0, 1);
+	glVertex2f(0, rect.Height);
+	glEnd();
+	glTranslatef(-rect.X, -rect.Y, 0);
+}
+
+void Rekd2D::Core::Renderer::DrawRect(RectF rect, RectF dest, Color c, float rota, Vector2F origin)
+{
+	glColor4f(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
+	glTranslatef(origin.X, origin.Y, 0);
+	glRotatef(rota, 0, 0, 1);
+	glTranslatef(rect.X, rect.Y, 0);
+	glBegin(GL_QUADS);
+	glTexCoord2f(dest.X, dest.Y);
+	glVertex2f(0, 0);
+	glTexCoord2f(dest.Width, dest.Y);
+	glVertex2f(rect.Width, 0);
+	glTexCoord2f(dest.Width, dest.Height);
+	glVertex2f(rect.Width, rect.Height);
+	glTexCoord2f(dest.X, dest.Height);
+	glVertex2f(0, rect.Height);
+	glEnd();
+	glTranslatef(-rect.X, -rect.Y, 0);
+	glRotatef(-rota, 0, 0, 1);
+	glTranslatef(-origin.X, -origin.Y, 0);
 }
 
 int Rekd2D::Core::Renderer::SurfaceToTexture(SDL_Surface* surf)

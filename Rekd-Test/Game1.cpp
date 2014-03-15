@@ -157,19 +157,11 @@ void Game1::Update(unsigned int time)
 
 void Game1::Render(unsigned int time)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	//LoadIdentity();
+	m_Renderer->Clear(Color(13, 35, 53));
 
 	b2Vec2 gpos = ground->GetPosition();
 
-	glBegin(GL_QUADS);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glVertex2f(gpos.x * 10 - 400, gpos.y * 10 - 100);
-	glVertex2f(gpos.x * 10 + 400, gpos.y * 10 - 100);
-	glColor3f(0.5f, 0.5f, 0.5f);
-	glVertex2f(gpos.x * 10 + 400, gpos.y * 10 + 100);
-	glVertex2f(gpos.x * 10 - 400, gpos.y * 10 + 100);
-	glEnd();
+	m_Renderer->DrawRect(RectF(gpos.x * 10 - 400, gpos.y * 10 - 100, 800, 200), Color(206, 201, 173));
 
 	for (unsigned int i = 0; i < world->GetBodies().size(); i++)
 	{
@@ -178,24 +170,25 @@ void Game1::Render(unsigned int time)
 
 		if (pos.x >= -10 && pos.y >= -10 && pos.x <= 90 && pos.y <= 58)
 		{
+			glLoadIdentity();
 			glTranslatef(pos.x * 10, pos.y * 10, 0);
 			glRotatef(angle, 0, 0, 1);
-			glColor3f(0.0f, 0.7f, 0.0f);
+			glColor3f(206 / 255.0f, 201 / 255.0f, 173 / 255.0f);
 			if (world->GetBodies()[i]->GetUserData() == "cube")
 			{
 				glBegin(GL_QUADS);
-				glVertex2f(-50, -50);
-				glVertex2f(50, -50);
-				glVertex2f(50, 50);
-				glVertex2f(-50, 50);
+				glVertex2f(-50.01f, -50.01f);
+				glVertex2f(50.01f, -50.01f);
+				glVertex2f(50.01f, 50.01f);
+				glVertex2f(-50.01f, 50.01f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "tri")
 			{
 				glBegin(GL_TRIANGLES);
-				glVertex2f(-50, -50);
-				glVertex2f(0, 50);
-				glVertex2f(50, -50);
+				glVertex2f(-50.01f, -50.01f);
+				glVertex2f(0, 50.01f);
+				glVertex2f(50.01f, -50.01f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "rope")
@@ -213,12 +206,10 @@ void Game1::Render(unsigned int time)
 				glVertex2f(0, 0);
 				for (int i = 0; i <= 60; i++)
 				{
-					glVertex2f(sinf(i / 60.0f * 3.1415926f * 2) * 50, cosf(i / 60.0f * 3.1415926f * 2) * 50);
+					glVertex2f(sinf(i / 60.0f * 3.1415926f * 2) * 50.01f, cosf(i / 60.0f * 3.1415926f * 2) * 50.01f);
 				}
 				glEnd();
 			}
-			glRotatef(-angle, 0, 0, 1);
-			glTranslatef(-pos.x * 10, -pos.y * 10, 0);
 		}
 	}
 }
