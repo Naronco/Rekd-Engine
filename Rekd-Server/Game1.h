@@ -25,7 +25,8 @@ public:
 private:
 	Random m_Random = 0;
 	b2Body* ground = 0;
-	Physics::World* world = 0;
+	std::vector<b2Body*> bodys;
+	b2World* world = 0;
 	KeyboardState oldState;
 };
 

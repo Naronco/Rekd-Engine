@@ -7,14 +7,15 @@ Game1::Game1()
 void Game1::Init()
 {
 	{
-		world = new Physics::World(Vector2F(0, 9.8f));
+		b2Vec2 grav(0.0f, 9.8f);
+		world = new b2World(grav);
 		b2PolygonShape shape;
 		shape.SetAsBox(40, 10);
 
 		b2BodyDef groundBodyDef;
 		groundBodyDef.position.Set(40, 50);
 		groundBodyDef.type = b2_staticBody;
-		ground = world->AddRigidBody(&groundBodyDef);
+		ground = world->CreateBody(&groundBodyDef);
 		ground->CreateFixture(&shape, 0.0f);
 	}
 }
@@ -28,13 +29,14 @@ void Game1::AddCube(int x, int y, int rx, int ry)
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
 	bd.linearVelocity = b2Vec2(rx, ry);
 	bd.userData = "cube";
-	b2Body* body = world->AddRigidBody(&bd);
+	b2Body* body = world->CreateBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
 	fixDef.density = 4.0f;
 	fixDef.friction = 0.8f;
 	fixDef.restitution = 0.2f;
 	body->CreateFixture(&fixDef);
+	bodys.push_back(body);
 }
 
 void Game1::AddCircle(int x, int y, int rx, int ry)
@@ -46,13 +48,14 @@ void Game1::AddCircle(int x, int y, int rx, int ry)
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
 	bd.linearVelocity = b2Vec2(rx, ry);
 	bd.userData = "circle";
-	b2Body* body = world->AddRigidBody(&bd);
+	b2Body* body = world->CreateBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
 	fixDef.density = 4.0f;
 	fixDef.friction = 0.2f;
 	fixDef.restitution = 0.8f;
 	body->CreateFixture(&fixDef);
+	bodys.push_back(body);
 }
 
 void Game1::AddTriangle(int x, int y, int rx, int ry)
@@ -68,13 +71,14 @@ void Game1::AddTriangle(int x, int y, int rx, int ry)
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
 	bd.linearVelocity = b2Vec2(rx, ry);
 	bd.userData = "tri";
-	b2Body* body = world->AddRigidBody(&bd);
+	b2Body* body = world->CreateBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
 	fixDef.density = 4.0f;
 	fixDef.friction = 0.8f;
 	fixDef.restitution = 0.2f;
 	body->CreateFixture(&fixDef);
+	bodys.push_back(body);
 }
 
 void Game1::AddRope(int x, int y)
@@ -127,7 +131,12 @@ void Game1::Load()
 
 void Game1::Unload()
 {
-	world->Deinit();
+	for (unsigned int i = 0; i < bodys.size(); i++)
+	{
+		world->DestroyBody(bodys[i]);
+	}
+	bodys.clear();
+	world->DestroyBody(ground);
 	delete world;
 }
 
@@ -171,17 +180,17 @@ void Game1::Render(unsigned int time)
 	glVertex2f(gpos.x * 10 - 400, gpos.y * 10 + 100);
 	glEnd();
 
-	for (unsigned int i = 0; i < world->GetBodies().size(); i++)
+	for (unsigned int i = 0; i < bodys.size(); i++)
 	{
-		float angle = world->GetBodies()[i]->GetAngle() * 180 / 3.141f;
-		b2Vec2 pos = world->GetBodies()[i]->GetPosition();
+		float angle = bodys[i]->GetAngle() * 180 / 3.141f;
+		b2Vec2 pos = bodys[i]->GetPosition();
 
 		if (pos.x >= -10 && pos.y >= -10 && pos.x <= 90 && pos.y <= 58)
 		{
 			glTranslatef(pos.x * 10, pos.y * 10, 0);
 			glRotatef(angle, 0, 0, 1);
 			glColor3f(0.0f, 0.7f, 0.0f);
-			if (world->GetBodies()[i]->GetUserData() == "cube")
+			if (bodys[i]->GetUserData() == "cube")
 			{
 				glBegin(GL_QUADS);
 				glVertex2f(-50, -50);
@@ -190,7 +199,7 @@ void Game1::Render(unsigned int time)
 				glVertex2f(-50, 50);
 				glEnd();
 			}
-			else if (world->GetBodies()[i]->GetUserData() == "tri")
+			else if (bodys[i]->GetUserData() == "tri")
 			{
 				glBegin(GL_TRIANGLES);
 				glVertex2f(-50, -50);
@@ -198,7 +207,7 @@ void Game1::Render(unsigned int time)
 				glVertex2f(50, -50);
 				glEnd();
 			}
-			else if (world->GetBodies()[i]->GetUserData() == "rope")
+			else if (bodys[i]->GetUserData() == "rope")
 			{
 				glBegin(GL_QUADS);
 				glVertex2f(-5, -1.25f);
@@ -207,7 +216,7 @@ void Game1::Render(unsigned int time)
 				glVertex2f(-5, 1.25f);
 				glEnd();
 			}
-			else if (world->GetBodies()[i]->GetUserData() == "circle")
+			else
 			{
 				glBegin(GL_TRIANGLE_FAN);
 				glVertex2f(0, 0);

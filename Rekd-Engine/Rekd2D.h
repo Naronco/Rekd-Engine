@@ -2,6 +2,7 @@
 #define REKD_REKD_2D_H_
 
 #include <Box2D\Box2D.h>
+#include <SDL_net.h>
 #include <SDL_opengl.h>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -13,6 +14,7 @@
 #include "UtilMath.h"
 #include "Mouse.h"
 #include "Keyboard.h"
+#include "World.h"
 
 class Rekd
 {

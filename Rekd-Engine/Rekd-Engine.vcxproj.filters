@@ -19,6 +19,12 @@
     <Filter Include="Enumdateien">
       <UniqueIdentifier>{0bc883a8-76ae-49ae-b73b-e28cd11d9fe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Physics">
+      <UniqueIdentifier>{bff3a97c-c112-4c42-a726-4e6219a94e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Physics">
+      <UniqueIdentifier>{065e1f06-8641-40a8-848e-f3484bfb4385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rekd2D.h">
@@ -75,6 +81,9 @@
     <ClInclude Include="Keyboard.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Headerdateien\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IContainer.cpp">
@@ -103,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Quelldateien\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

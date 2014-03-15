@@ -14,6 +14,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 	unsigned int now;
 	MouseState s;
 	KeyboardState ks;
+	SDLNet_Init();
 	while (m_Window->Update(&e))
 	{
 		now = SDL_GetTicks();
@@ -63,6 +64,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		Render(delta);
 	}
 	Unload();
+	SDLNet_Quit();
 	m_Renderer->Dispose();
 	m_Window->Dispose();
 	delete m_Window;

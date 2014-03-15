@@ -105,6 +105,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BezierCurve.cpp" />
@@ -116,6 +117,7 @@
     <ClCompile Include="UtilMath.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
