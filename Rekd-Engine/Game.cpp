@@ -2,7 +2,7 @@
 
 void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int height)
 {
-	Rekd::InitGL(3, 1);
+	Rekd::InitGL(2, 0);
 	Init();
 	m_Window = new Window(title, width, height);
 	m_Renderer = new Renderer(m_Window);

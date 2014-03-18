@@ -3,6 +3,7 @@
 
 #include <Box2D\Box2D.h>
 #include <SDL_net.h>
+#include <gl\glew.h>
 #include <SDL_opengl.h>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -10,6 +11,10 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Vector2.h"
+#include "Vector3.h"
+#include "Vector4.h"
+#include "Matrix3x3.h"
+#include "Matrix4x4.h"
 #include "BezierCurve.h"
 #include "UtilMath.h"
 #include "Mouse.h"

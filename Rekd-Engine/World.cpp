@@ -1,6 +1,6 @@
 #include "World.h"
 
-Rekd2D::Core::Physics::World::World(Vector2F gravity) : b2World(b2Vec2(gravity.X, gravity.Y))
+Rekd2D::Core::Physics::World::World(Vector2F gravity) : b2World(b2Vec2(gravity.x, gravity.y))
 {
 }
 

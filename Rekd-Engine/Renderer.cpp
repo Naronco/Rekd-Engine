@@ -51,7 +51,7 @@ void Rekd2D::Core::Renderer::DrawRect(RectF rect, RectF dest, Color c)
 void Rekd2D::Core::Renderer::DrawRect(RectF rect, RectF dest, Color c, float rota, Vector2F origin)
 {
 	glColor4f(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
-	glTranslatef(origin.X, origin.Y, 0);
+	glTranslatef(origin.x, origin.y, 0);
 	glRotatef(rota, 0, 0, 1);
 	glTranslatef(rect.X, rect.Y, 0);
 	glBegin(GL_QUADS);
@@ -66,7 +66,7 @@ void Rekd2D::Core::Renderer::DrawRect(RectF rect, RectF dest, Color c, float rot
 	glEnd();
 	glTranslatef(-rect.X, -rect.Y, 0);
 	glRotatef(-rota, 0, 0, 1);
-	glTranslatef(-origin.X, -origin.Y, 0);
+	glTranslatef(-origin.x, -origin.y, 0);
 }
 
 int Rekd2D::Core::Renderer::SurfaceToTexture(SDL_Surface* surf)
