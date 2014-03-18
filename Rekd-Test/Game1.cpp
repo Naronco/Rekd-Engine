@@ -123,11 +123,20 @@ void Game1::AddRope(int x, int y)
 
 void Game1::Load()
 {
+	m_Texture = new Texture();
+	m_Texture->Load("test.png");
+	m_Shader = new Shader("void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }", "uniform sampler2D sampler; uniform float time; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st + vec2(0, sin(gl_TexCoord[0].x + time))); }");
+	m_Shader->Bind();
 }
 
 void Game1::Unload()
 {
 	world->Deinit();
+	if (m_Texture)
+	{
+		m_Texture->Unload();
+		delete m_Texture;
+	}
 	delete world;
 }
 
@@ -163,6 +172,8 @@ void Game1::Render(unsigned int time)
 
 	m_Renderer->DrawRect(RectF(gpos.x * 10 - 400, gpos.y * 10 - 100, 800, 200), Color(206, 201, 173));
 
+	m_Shader->Set("time", m_Shader->GetFloat("time") + 0.1f);
+
 	for (unsigned int i = 0; i < world->GetBodies().size(); i++)
 	{
 		float angle = world->GetBodies()[i]->GetAngle() * 180 / 3.141f;
@@ -173,21 +184,28 @@ void Game1::Render(unsigned int time)
 			glLoadIdentity();
 			glTranslatef(pos.x * 10, pos.y * 10, 0);
 			glRotatef(angle, 0, 0, 1);
-			glColor3f(206 / 255.0f, 201 / 255.0f, 173 / 255.0f);
+			glColor3f(1, 1, 1);
 			if (world->GetBodies()[i]->GetUserData() == "cube")
 			{
 				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
 				glVertex2f(-50.01f, -50.01f);
+				glTexCoord2f(1, 0);
 				glVertex2f(50.01f, -50.01f);
+				glTexCoord2f(1, 1);
 				glVertex2f(50.01f, 50.01f);
+				glTexCoord2f(0, 1);
 				glVertex2f(-50.01f, 50.01f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "tri")
 			{
 				glBegin(GL_TRIANGLES);
+				glTexCoord2f(0, 0);
 				glVertex2f(-50.01f, -50.01f);
+				glTexCoord2f(0.5f, 1);
 				glVertex2f(0, 50.01f);
+				glTexCoord2f(1, 0);
 				glVertex2f(50.01f, -50.01f);
 				glEnd();
 			}
@@ -203,9 +221,11 @@ void Game1::Render(unsigned int time)
 			else if (world->GetBodies()[i]->GetUserData() == "circle")
 			{
 				glBegin(GL_TRIANGLE_FAN);
+				glTexCoord2f(0.5f, 0.5f);
 				glVertex2f(0, 0);
 				for (int i = 0; i <= 60; i++)
 				{
+					glTexCoord2f(sinf(i / 60.0f * 3.1415926f * 2) * 0.5f + 0.5f, cosf(i / 60.0f * 3.1415926f * 2) * 0.5f + 0.5f);
 					glVertex2f(sinf(i / 60.0f * 3.1415926f * 2) * 50.01f, cosf(i / 60.0f * 3.1415926f * 2) * 50.01f);
 				}
 				glEnd();

@@ -2,11 +2,15 @@
 
 void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int height)
 {
-	Rekd::InitGL(2, 0);
+	SDL_Init(SDL_INIT_EVERYTHING);
+	Rekd::InitGL(2, 1);
 	Init();
 	m_Window = new Window(title, width, height);
 	m_Renderer = new Renderer(m_Window);
 	glEnable(GL_TEXTURE_2D);
+	SDLNet_Init();
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
+	glewInit();
 	Load();
 	Event e;
 	m_Window->Show();
@@ -14,7 +18,6 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 	unsigned int now;
 	MouseState s;
 	KeyboardState ks;
-	SDLNet_Init();
 	while (m_Window->Update())
 	{
 		now = SDL_GetTicks();
@@ -67,9 +70,11 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		Render(delta);
 	}
 	Unload();
+	IMG_Quit();
 	SDLNet_Quit();
 	m_Renderer->Dispose();
 	m_Window->Dispose();
 	delete m_Window;
 	delete m_Renderer;
+	SDL_Quit();
 }

@@ -27,6 +27,8 @@ private:
 	b2Body* ground = 0;
 	Physics::World* world = 0;
 	KeyboardState oldState;
+	Shader* m_Shader;
+	Texture* m_Texture;
 };
 
 #endif

@@ -21,6 +21,8 @@
 #include "Keyboard.h"
 #include "World.h"
 #include "Rect.h"
+#include "Shader.h"
+#include "Texture.h"
 
 class Rekd
 {

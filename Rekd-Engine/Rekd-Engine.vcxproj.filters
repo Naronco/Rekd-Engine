@@ -39,9 +39,6 @@
     <ClInclude Include="IRenderableContainer.h">
       <Filter>Interfacedateien</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -55,9 +52,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix3x3.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="BezierCurve.h">
@@ -83,6 +77,30 @@
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Headerdateien\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3x3.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Quelldateien\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

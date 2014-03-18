@@ -88,6 +88,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="IContainer.h" />
@@ -95,15 +96,20 @@
     <ClInclude Include="IRenderableContainer.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="KeyboardState.h" />
+    <ClInclude Include="Matrix3x3.h" />
+    <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MouseState.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="UtilMath.h" />
-    <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rekd2D.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Vector4.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
@@ -114,6 +120,8 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UtilMath.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
