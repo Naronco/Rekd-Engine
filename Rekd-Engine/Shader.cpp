@@ -1,6 +1,22 @@
 #include "Shader.h"
 
-Rekd2D::Core::Shader::Shader(const std::string &vshader, const std::string &fshader)
+Rekd2D::Core::Shader::Shader(const std::string &v, const std::string &f)
+{
+	vshader = v;
+	fshader = f;
+	Compile();
+	Bind();
+}
+
+void Rekd2D::Core::Shader::SetVertex(const std::string &shader)
+{
+	vshader = shader;
+}
+void Rekd2D::Core::Shader::SetFragment(const std::string &shader)
+{
+	fshader = shader;
+}
+void Rekd2D::Core::Shader::Compile()
 {
 	int status_code;
 	unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
@@ -41,7 +57,6 @@ Rekd2D::Core::Shader::Shader(const std::string &vshader, const std::string &fsha
 	glAttachShader(m_Program, vertex);
 
 	glLinkProgram(m_Program);
-	glUseProgram(m_Program);
 }
 
 void Rekd2D::Core::Shader::Bind()

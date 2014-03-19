@@ -12,8 +12,11 @@ namespace Rekd2D
 		class Shader
 		{
 		public:
-			Shader(const std::string &vshader, const std::string &fshader);
+			Shader(const std::string &v, const std::string &f);
 
+			void SetVertex(const std::string &shader);
+			void SetFragment(const std::string &shader);
+			void Compile();
 			void Bind();
 
 			void Set(const std::string &location, int value);
@@ -34,6 +37,8 @@ namespace Rekd2D
 		protected:
 			std::map<std::string, unsigned int> m_Locations;
 			unsigned int m_Program;
+			std::string vshader;
+			std::string fshader;
 		};
 	}
 }

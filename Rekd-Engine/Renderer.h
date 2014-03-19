@@ -1,12 +1,9 @@
 #ifndef REKD_RENDERER_H_
 #define REKD_RENDERER_H_
 
-#include <SDL.h>
-#include <SDL_opengl.h>
-#include "Rect.h"
-#include "Color.h"
-#include "Error.h"
 #include "Window.h"
+#include "Color.h"
+#include "Rect.h"
 #include "Vector2.h"
 
 namespace Rekd2D
@@ -46,7 +43,7 @@ namespace Rekd2D
 		protected:
 			bool m_IsDrawing = false;
 			SDL_GLContext m_Context;
-			Window* m_Window;
+			Window *m_Window;
 			unsigned int m_RectId;
 		};
 	}

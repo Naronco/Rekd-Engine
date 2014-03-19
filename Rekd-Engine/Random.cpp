@@ -2,10 +2,10 @@
 
 Rekd2D::Core::Random::Random()
 {
-	x = 45614563 + GetTickCount64();
-	x = 89215656 + GetTickCount64();
-	x = 23452554 + GetTickCount64();
-	x = 16145861 + GetTickCount64();
+	x = 45614563LL + GetTickCount64();
+	x = 89215656LL + GetTickCount64();
+	x = 23452554LL + GetTickCount64();
+	x = 16145861LL + GetTickCount64();
 }
 Rekd2D::Core::Random::Random(int seed)
 {
@@ -27,7 +27,7 @@ Rekd2D::Core::Random::Random(unsigned int seed1, unsigned int seed2, unsigned in
 	z = seed3;
 	w = seed4;
 }
-unsigned int Rekd2D::Core::Random::Next()
+unsigned long long Rekd2D::Core::Random::Next()
 {
 	t = x ^ (x << 11);
 	x = y; y = z; z = w;

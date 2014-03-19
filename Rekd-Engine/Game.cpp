@@ -4,13 +4,21 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Rekd::InitGL(2, 1);
+	glEnable(GL_TEXTURE_2D);
 	Init();
 	m_Window = new Window(title, width, height);
+	int err = SDLNet_Init();
+	if (err != 0) std::cout << "SDLNet ERROR " << err << ": " << SDLNet_GetError() << std::endl;
+	err = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
+	if (!err) std::cout << "IMG ERROR " << err << ": " << IMG_GetError() << std::endl;
+	err = glewInit();
+	if (err != 0) std::cout << "GLEW ERROR " << err << ": " << glewGetErrorString(err) << std::endl;
 	m_Renderer = new Renderer(m_Window);
-	glEnable(GL_TEXTURE_2D);
-	SDLNet_Init();
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
-	glewInit();
+	m_Window->GenerateFramebuffer();
+	m_PostProcess = new Shader(
+		"void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }",
+		"uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }"
+		);
 	Load();
 	Event e;
 	m_Window->Show();
@@ -20,6 +28,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 	KeyboardState ks;
 	while (m_Window->Update())
 	{
+		m_Window->BindFramebuffer();
 		now = SDL_GetTicks();
 		if (now > last)
 		{
@@ -68,6 +77,21 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		}
 		Update(delta);
 		Render(delta);
+		m_Window->UnbindFramebuffer();
+		m_Renderer->Clear(Color(43, 78, 124));
+		glLoadIdentity();
+		m_Window->BindScreentex();
+		m_PostProcess->Bind();
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 1);
+		glVertex2f(0, 0);
+		glTexCoord2f(1, 1);
+		glVertex2f(width, 0);
+		glTexCoord2f(1, 0);
+		glVertex2f(width, height);
+		glTexCoord2f(0, 0);
+		glVertex2f(0, height);
+		glEnd();
 	}
 	Unload();
 	IMG_Quit();

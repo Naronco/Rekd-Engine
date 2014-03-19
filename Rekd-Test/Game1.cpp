@@ -16,17 +16,21 @@ void Game1::Init()
 		groundBodyDef.type = b2_staticBody;
 		ground = world->AddRigidBody(&groundBodyDef);
 		ground->CreateFixture(&shape, 0.0f);
+
+		AddCube(0, 240, 0, 0, 10, 240, false);
+		AddCube(800, 240, 0, 0, 10, 240, false);
+		AddCube(400, 0, 0, 0, 400, 10, false);
 	}
 }
 
-void Game1::AddCube(int x, int y, int rx, int ry)
+void Game1::AddCube(int x, int y, int rx, int ry, int w, int h, bool dynamic)
 {
 	b2PolygonShape charShape;
-	charShape.SetAsBox(5, 5);
+	charShape.SetAsBox(w / 10.0f, h / 10.0f);
 	b2BodyDef bd;
-	bd.type = b2_dynamicBody;
+	bd.type = dynamic ? b2_dynamicBody : b2_staticBody;
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
-	bd.linearVelocity = b2Vec2(rx, ry);
+	if (dynamic) bd.linearVelocity = b2Vec2((float)rx, (float)ry);
 	bd.userData = "cube";
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
@@ -44,14 +48,14 @@ void Game1::AddCircle(int x, int y, int rx, int ry)
 	b2BodyDef bd;
 	bd.type = b2_dynamicBody;
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
-	bd.linearVelocity = b2Vec2(rx, ry);
+	bd.linearVelocity = b2Vec2((float)rx, (float)ry);
 	bd.userData = "circle";
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
-	fixDef.density = 4.0f;
-	fixDef.friction = 0.2f;
-	fixDef.restitution = 0.8f;
+	fixDef.density = 0.0f;
+	fixDef.friction = 0.0f;
+	fixDef.restitution = 1.0f;
 	body->CreateFixture(&fixDef);
 }
 
@@ -66,7 +70,7 @@ void Game1::AddTriangle(int x, int y, int rx, int ry)
 	b2BodyDef bd;
 	bd.type = b2_dynamicBody;
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
-	bd.linearVelocity = b2Vec2(rx, ry);
+	bd.linearVelocity = b2Vec2((float)rx, (float)ry);
 	bd.userData = "tri";
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
@@ -125,7 +129,10 @@ void Game1::Load()
 {
 	m_Texture = new Texture();
 	m_Texture->Load("test.png");
-	m_Shader = new Shader("void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }", "uniform sampler2D sampler; uniform float time; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st + vec2(0, sin(gl_TexCoord[0].x + time))); }");
+	m_Shader = new Shader(
+		"void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }",
+		"uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }"
+		);
 	m_Shader->Bind();
 }
 
@@ -167,12 +174,12 @@ void Game1::Update(unsigned int time)
 void Game1::Render(unsigned int time)
 {
 	m_Renderer->Clear(Color(13, 35, 53));
+	m_Texture->Bind();
+	m_Shader->Bind();
 
 	b2Vec2 gpos = ground->GetPosition();
 
 	m_Renderer->DrawRect(RectF(gpos.x * 10 - 400, gpos.y * 10 - 100, 800, 200), Color(206, 201, 173));
-
-	m_Shader->Set("time", m_Shader->GetFloat("time") + 0.1f);
 
 	for (unsigned int i = 0; i < world->GetBodies().size(); i++)
 	{
@@ -189,13 +196,13 @@ void Game1::Render(unsigned int time)
 			{
 				glBegin(GL_QUADS);
 				glTexCoord2f(0, 0);
-				glVertex2f(-50.01f, -50.01f);
+				glVertex3f(-50.01f, -50.01f, -0.9f);
 				glTexCoord2f(1, 0);
-				glVertex2f(50.01f, -50.01f);
+				glVertex3f(50.01f, -50.01f, -0.9f);
 				glTexCoord2f(1, 1);
-				glVertex2f(50.01f, 50.01f);
+				glVertex3f(50.01f, 50.01f, -0.9f);
 				glTexCoord2f(0, 1);
-				glVertex2f(-50.01f, 50.01f);
+				glVertex3f(-50.01f, 50.01f, -0.9f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "tri")

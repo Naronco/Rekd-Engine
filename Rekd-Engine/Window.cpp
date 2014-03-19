@@ -47,10 +47,7 @@ Rekd2D::Core::Error Rekd2D::Core::Window::SetFullscreen(bool fullscreen)
 void Rekd2D::Core::Window::Resize(unsigned int width, unsigned int height)
 {
 	if (m_Window)
-	{
 		SDL_SetWindowSize(m_Window, width, height);
-		glViewport(0, 0, width, height);
-	}
 }
 
 void Rekd2D::Core::Window::SetPosition(int x, int y)
@@ -90,7 +87,6 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		}
 		if (ev.window.event == SDL_WINDOWEVENT_RESIZED)
 		{
-			glViewport(0, 0, ev.window.data1, ev.window.data2);
 			m_Width = ev.window.data1;
 			m_Height = ev.window.data2;
 		}
@@ -245,4 +241,44 @@ int Rekd2D::Core::Window::GetWidth()
 int Rekd2D::Core::Window::GetHeight()
 {
 	return m_Height;
+}
+
+void Rekd2D::Core::Window::BindFramebuffer()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
+	glOrtho(0, m_FramebufferWidth, m_FramebufferHeight, 0, -1, 1);
+	glViewport(0, 0, m_FramebufferWidth, m_FramebufferHeight);
+}
+
+void Rekd2D::Core::Window::UnbindFramebuffer()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glOrtho(0, m_Width, m_Height, 0, -1, 1);
+	glViewport(0, 0, m_Width, m_Height);
+}
+
+void Rekd2D::Core::Window::GenerateFramebuffer()
+{
+	SDL_DisplayMode current;
+	for (int i = 0; i < SDL_GetNumVideoDisplays(); i++){
+		int should_be_zero = SDL_GetCurrentDisplayMode(i, &current);
+		if (should_be_zero == 0)
+			break;
+	}
+	glGenFramebuffers(1, &m_Framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
+	glGenTextures(1, &m_FramebufferTexture);
+	glBindTexture(GL_TEXTURE_2D, m_FramebufferTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, current.w, current.h, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_FramebufferTexture, 0);
+
+	m_FramebufferWidth = current.w;
+	m_FramebufferHeight = current.h;
+}
+
+void Rekd2D::Core::Window::BindScreentex()
+{
+	glBindTexture(GL_TEXTURE_2D, m_FramebufferTexture);
 }

@@ -15,11 +15,11 @@ namespace Rekd2D
 			Random(unsigned int seed1, unsigned int seed2, unsigned int seed3, unsigned int seed4);
 
 			unsigned int Next(unsigned int max);
-			unsigned int Next();
+			unsigned long long Next();
 			float NextFloat();
 			bool NextBool();
 		protected:
-			unsigned int x, y, z, w, t;
+			unsigned long long x, y, z, w, t;
 		};
 	}
 }

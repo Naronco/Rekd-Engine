@@ -8,21 +8,24 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
-#include "Window.h"
-#include "Renderer.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Matrix3x3.h"
 #include "Matrix4x4.h"
-#include "BezierCurve.h"
-#include "UtilMath.h"
-#include "Mouse.h"
-#include "Keyboard.h"
 #include "World.h"
 #include "Rect.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "Event.h"
+#include "Error.h"
+#include "Color.h"
+#include "UtilMath.h"
+#include "BezierCurve.h"
+#include "Mouse.h"
+#include "Keyboard.h"
+#include "Window.h"
+#include "Renderer.h"
 
 class Rekd
 {

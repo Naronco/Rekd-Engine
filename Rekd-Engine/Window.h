@@ -1,9 +1,11 @@
 #ifndef REKD_WINDOW_H_
 #define REKD_WINDOW_H_
 
-#include <SDL_opengl.h>
 #include "Event.h"
 #include "Error.h"
+#include <gl\glew.h>
+#include <SDL_opengl.h>
+#include <SDL_video.h>
 
 namespace Rekd2D
 {
@@ -52,6 +54,11 @@ namespace Rekd2D
 			/// <summary>Gets the Handle to the SDL Window</summary>
 			SDL_Window* GetHandle();
 
+			void BindScreentex();
+			void GenerateFramebuffer();
+			void BindFramebuffer();
+			void UnbindFramebuffer();
+
 			int GetWidth();
 			int GetHeight();
 		protected:
@@ -64,6 +71,11 @@ namespace Rekd2D
 
 			int m_Width;
 			int m_Height;
+			int m_FramebufferWidth;
+			int m_FramebufferHeight;
+			unsigned int m_Framebuffer;
+			unsigned int m_FramebufferTexture;
+			unsigned int m_DepthTexture;
 		};
 	}
 }

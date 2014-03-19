@@ -25,6 +25,7 @@ namespace Rekd2D
 		protected:
 			Renderer* m_Renderer;
 			Window* m_Window;
+			Shader* m_PostProcess;
 		};
 	}
 }

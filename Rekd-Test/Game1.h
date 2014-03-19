@@ -1,5 +1,4 @@
-#ifndef _GAME1_H_
-#define _GAME1_H_
+#pragma once
 
 #include <Rekd2D.h>
 #include <Game.h>
@@ -18,7 +17,7 @@ public:
 	void Render(unsigned int time);
 	void Unload();
 	void AddCircle(int x, int y, int rx, int ry);
-	void AddCube(int x, int y, int rx, int ry);
+	void AddCube(int x, int y, int rx, int ry, int w = 50, int h = 50, bool dynamic = true);
 	void AddTriangle(int x, int y, int rx, int ry);
 	void AddRope(int x, int y);
 
@@ -30,5 +29,3 @@ private:
 	Shader* m_Shader;
 	Texture* m_Texture;
 };
-
-#endif
