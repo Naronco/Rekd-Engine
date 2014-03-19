@@ -15,7 +15,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 	if (err != 0) std::cout << "GLEW ERROR " << err << ": " << glewGetErrorString(err) << std::endl;
 	m_Renderer = new Renderer(m_Window);
 	m_Window->GenerateFramebuffer();
-	m_PostProcess = new Shader(
+	m_PostProcess = new PredefinedShader(
 		"void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }",
 		"uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }"
 		);

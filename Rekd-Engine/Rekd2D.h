@@ -16,6 +16,7 @@
 #include "World.h"
 #include "Rect.h"
 #include "Shader.h"
+#include "PredefinedShader.h"
 #include "Texture.h"
 #include "Event.h"
 #include "Error.h"

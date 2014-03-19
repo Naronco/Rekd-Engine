@@ -1,4 +1,69 @@
 #include "PredefinedShader.h"
+
+Rekd2D::Core::PredefinedShader::PredefinedShader(const std::string &v, const std::string &f)
+{
+	vshader = v;
+	fshader = f;
+	Compile();
+	Bind();
+}
+
+void Rekd2D::Core::PredefinedShader::SetVertex(const std::string &shader)
+{
+	vshader = shader;
+}
+void Rekd2D::Core::PredefinedShader::SetFragment(const std::string &shader)
+{
+	fshader = shader;
+}
+void Rekd2D::Core::PredefinedShader::Compile()
+{
+	int status_code;
+	unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
+	unsigned int fragment = glCreateShader(GL_FRAGMENT_SHADER);
+
+	const char* str = vshader.c_str();
+	glShaderSource(vertex, 1, &str, NULL);
+	glCompileShader(vertex);
+	glGetShaderiv(vertex, GL_COMPILE_STATUS, &status_code);
+	if (status_code == 0)
+	{
+		int logLength;
+		glGetShaderiv(vertex, GL_INFO_LOG_LENGTH, &logLength);
+		char* log = new char[logLength + 1];
+		glGetShaderInfoLog(vertex, logLength, NULL, log);
+		std::cout << log << std::endl;
+		delete[] log;
+		return;
+	}
+
+	const char* str2 = fshader.c_str();
+	glShaderSource(fragment, 1, &str2, NULL);
+	glCompileShader(fragment);
+	glGetShaderiv(fragment, GL_COMPILE_STATUS, &status_code);
+	if (status_code == 0)
+	{
+		int logLength;
+		glGetShaderiv(fragment, GL_INFO_LOG_LENGTH, &logLength);
+		char* log = new char[logLength + 1];
+		glGetShaderInfoLog(fragment, logLength, NULL, log);
+		std::cout << log << std::endl;
+		delete[] log;
+		return;
+	}
+
+	m_Program = glCreateProgram();
+	glAttachShader(m_Program, fragment);
+	glAttachShader(m_Program, vertex);
+
+	glLinkProgram(m_Program);
+}
+
+void Rekd2D::Core::PredefinedShader::Bind()
+{
+	glUseProgram(m_Program);
+}
+
 void Rekd2D::Core::PredefinedShader::Set(const std::string &location, int value)
 {
 	int uniform = m_Locations[location];

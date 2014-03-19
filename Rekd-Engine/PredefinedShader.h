@@ -1,20 +1,23 @@
 #ifndef REKD_PREDEFINEDSHADER_H_
 #define REKD_PREDEFINEDSHADER_H_
 
-#include "Shader.h"
+#include "Rekd2D.h"
+#include <SDL_opengl.h>
+#include <map>
 
 namespace Rekd2D
 {
 	namespace Core
 	{
-		class PredefinedShader : public Shader
+		class PredefinedShader
 		{
 		public:
-			using Shader::Shader;
-			using Shader::SetVertex;
-			using Shader::SetFragment;
-			using Shader::Compile;
-			using Shader::Bind;
+			PredefinedShader(const std::string &v, const std::string &f);
+
+			void SetVertex(const std::string &shader);
+			void SetFragment(const std::string &shader);
+			void Compile();
+			void Bind();
 
 			void AddUniform(const std::string &location);
 
@@ -34,6 +37,10 @@ namespace Rekd2D
 			Matrix3x3F GetMat3(const std::string &location);
 			Matrix4x4F GetMat4(const std::string &location);
 		protected:
+			std::map<std::string, unsigned int> m_Locations;
+			unsigned int m_Program;
+			std::string vshader;
+			std::string fshader;
 		};
 	}
 }
