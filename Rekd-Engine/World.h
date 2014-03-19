@@ -17,10 +17,13 @@ namespace Rekd2D
 				void Deinit();
 
 				b2Body* AddRigidBody(const b2BodyDef* def);
+				b2Joint* AddJoint(const b2JointDef* def);
 				std::vector<b2Body*> GetBodies() const;
+				std::vector<b2Joint*> GetJoints() const;
 
 			protected:
 				std::vector<b2Body*> bodies;
+				std::vector<b2Joint*> joints;
 			};
 		}
 	}

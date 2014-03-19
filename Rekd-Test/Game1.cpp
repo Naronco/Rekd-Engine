@@ -53,9 +53,9 @@ void Game1::AddCircle(int x, int y, int rx, int ry)
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
-	fixDef.density = 1000.0f;
-	fixDef.friction = 0.0f;
-	fixDef.restitution = 1.0f;
+	fixDef.density = 4.0f;
+	fixDef.friction = 0.2f;
+	fixDef.restitution = 0.8f;
 	body->CreateFixture(&fixDef);
 }
 
@@ -81,48 +81,100 @@ void Game1::AddTriangle(int x, int y, int rx, int ry)
 	body->CreateFixture(&fixDef);
 }
 
-void Game1::AddRope(int x, int y)
+void Game1::AddArrow(int x, int y)
 {
-	/*b2Body* box = 0;
-	{
 	b2PolygonShape charShape;
-	charShape.SetAsBox(5, 5);
+	b2Vec2* p = new b2Vec2[3];
+	p[0] = b2Vec2(-5, -5);
+	p[1] = b2Vec2(0, 5);
+	p[2] = b2Vec2(5, -5);
+	charShape.Set(p, 3);
 	b2BodyDef bd;
-	bd.type = b2_staticBody;
+	bd.type = b2_dynamicBody;
 	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
-	bd.userData = "cube";
+	bd.linearVelocity = b2Vec2(-200, 0);
+	bd.fixedRotation = true;
+	bd.angle = 3.1415926f * 0.5f;
+	bd.userData = "tri";
+	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
 	fixDef.density = 4.0f;
 	fixDef.friction = 0.8f;
 	fixDef.restitution = 0.2f;
-	box = world->CreateBody(&bd);
-	box->CreateFixture(&fixDef);
-	bodys.push_back(box);
+	body->CreateFixture(&fixDef);
+}
+
+void Game1::AddRope(int x, int y)
+{
+	b2Body* box = 0;
+	{
+		b2PolygonShape charShape;
+		charShape.SetAsBox(0.5f, 0.5f);
+		b2BodyDef bd;
+		bd.type = b2_staticBody;
+		bd.position = b2Vec2(x / 10.0f, y / 10.0f);
+		bd.userData = "cubeanch";
+		b2FixtureDef fixDef;
+		fixDef.shape = &charShape;
+		fixDef.density = 4.0f;
+		fixDef.friction = 0.8f;
+		fixDef.restitution = 0.2f;
+		box = world->AddRigidBody(&bd);
+		box->CreateFixture(&fixDef);
 	}
 
-	b2RevoluteJoint rev(;
 	b2Body* prevBody = box;
 
-	for (int i = 1; i <= 10; i++) {
-	// rope segment
-	bodyDef = new b2BodyDef();
-	bodyDef.position.x = 8.5;
-	bodyDef.position.y = i;
-	boxDef = new b2PolygonDef();
-	boxDef.SetAsBox(0.1, 0.5);
-	boxDef.density = 100;
-	boxDef.friction = 0.5;
-	boxDef.restitution = 0.2;
-	body = m_world.CreateBody(bodyDef);
-	body.CreateShape(boxDef);
-	// joint
-	revolute_joint.Initialize(link, body, new b2Vec2(8.5, i - 0.5));
-	m_world.CreateJoint(revolute_joint);
-	body.SetMassFromShapes();
-	// saving the reference of the last placed link
-	link = body;
-	}*/
+	for (int i = 1; i <= 10; i++)
+	{
+		b2RevoluteJointDef jointDef;
+
+		b2PolygonShape charShape;
+		charShape.SetAsBox(0.5f, 0.25f);
+		b2BodyDef bd;
+		bd.type = b2_dynamicBody;
+		bd.position = b2Vec2(x / 10.0f + i * 1.0f, y / 10.0f);
+		bd.userData = "rope";
+		b2FixtureDef fixDef;
+		fixDef.shape = &charShape;
+		fixDef.density = 4.0f;
+		fixDef.friction = 0.8f;
+		fixDef.restitution = 0.2f;
+		b2Body* rope = world->AddRigidBody(&bd);
+		rope->CreateFixture(&fixDef);
+
+		jointDef.Initialize(prevBody, rope, prevBody->GetWorldCenter());
+		jointDef.enableLimit = false;
+		jointDef.enableMotor = false;
+		world->CreateJoint(&jointDef);
+
+		prevBody = rope;
+	}
+
+	b2PolygonShape charShape;
+	b2Vec2* p = new b2Vec2[3];
+	p[0] = b2Vec2(-5, -5);
+	p[1] = b2Vec2(0, 5);
+	p[2] = b2Vec2(5, -5);
+	charShape.Set(p, 3);
+	b2BodyDef bd;
+	bd.type = b2_dynamicBody;
+	bd.position = b2Vec2(x / 10.0f + 10, y / 10.0f);
+	bd.userData = "tri";
+	bd.angle = 3.1415926f * 0.5f;
+	b2Body* body = world->AddRigidBody(&bd);
+	b2FixtureDef fixDef;
+	fixDef.shape = &charShape;
+	fixDef.density = 0.5f;
+	fixDef.friction = 0.8f;
+	fixDef.restitution = 0.2f;
+	body->CreateFixture(&fixDef);
+	b2RevoluteJointDef jointDef;
+	jointDef.Initialize(prevBody, body, prevBody->GetWorldCenter());
+	jointDef.enableLimit = false;
+	jointDef.enableMotor = false;
+	world->CreateJoint(&jointDef);
 }
 
 void Game1::Load()
@@ -171,6 +223,10 @@ void Game1::Update(unsigned int time)
 	{
 		AddRope(mState.X, mState.Y);
 	}
+	if (cState.IsKeyDown(SDLK_b) && !oldState.IsKeyDown(SDLK_b))
+	{
+		AddArrow(mState.X, mState.Y);
+	}
 	oldState = cState;
 }
 
@@ -208,6 +264,19 @@ void Game1::Render(unsigned int time)
 				glVertex3f(-50.01f, 50.01f, -0.9f);
 				glEnd();
 			}
+			else if (world->GetBodies()[i]->GetUserData() == "cubeanch")
+			{
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
+				glVertex3f(-5.01f, -5.01f, -0.9f);
+				glTexCoord2f(1, 0);
+				glVertex3f(5.01f, -5.01f, -0.9f);
+				glTexCoord2f(1, 1);
+				glVertex3f(5.01f, 5.01f, -0.9f);
+				glTexCoord2f(0, 1);
+				glVertex3f(-5.01f, 5.01f, -0.9f);
+				glEnd();
+			}
 			else if (world->GetBodies()[i]->GetUserData() == "tri")
 			{
 				glBegin(GL_TRIANGLES);
@@ -222,10 +291,10 @@ void Game1::Render(unsigned int time)
 			else if (world->GetBodies()[i]->GetUserData() == "rope")
 			{
 				glBegin(GL_QUADS);
-				glVertex2f(-5, -1.25f);
-				glVertex2f(5, -1.25f);
-				glVertex2f(5, 1.25f);
-				glVertex2f(-5, 1.25f);
+				glVertex2f(-5, -2.5f);
+				glVertex2f(5, -2.5f);
+				glVertex2f(5, 2.5f);
+				glVertex2f(-5, 2.5f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "circle")

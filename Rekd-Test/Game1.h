@@ -20,6 +20,7 @@ public:
 	void AddCube(int x, int y, int rx, int ry, int w = 50, int h = 50, bool dynamic = true);
 	void AddTriangle(int x, int y, int rx, int ry);
 	void AddRope(int x, int y);
+	void AddArrow(int x, int y);
 
 private:
 	Random m_Random = 0;
