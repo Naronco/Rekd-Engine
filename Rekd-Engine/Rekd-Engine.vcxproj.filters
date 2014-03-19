@@ -102,6 +102,9 @@
     <ClInclude Include="Texture.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PredefinedShader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IContainer.cpp">
@@ -138,6 +141,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PredefinedShader.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

@@ -100,6 +100,7 @@
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MouseState.h" />
+    <ClInclude Include="PredefinedShader.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="IContainer.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="PredefinedShader.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
