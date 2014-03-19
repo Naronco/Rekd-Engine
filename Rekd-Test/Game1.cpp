@@ -53,7 +53,7 @@ void Game1::AddCircle(int x, int y, int rx, int ry)
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
-	fixDef.density = 0.0f;
+	fixDef.density = 1000.0f;
 	fixDef.friction = 0.0f;
 	fixDef.restitution = 1.0f;
 	body->CreateFixture(&fixDef);
@@ -134,6 +134,9 @@ void Game1::Load()
 		"uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }"
 		);
 	m_Shader->Bind();
+	m_PostProcess->SetVertex("void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }");
+	m_PostProcess->SetFragment("uniform sampler2D sampler; void main() { gl_FragColor = 1 - texture2D(sampler, gl_TexCoord[0].st); }");
+	m_PostProcess->Compile();
 }
 
 void Game1::Unload()
