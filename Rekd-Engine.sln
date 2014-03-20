@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rekd-Engine", "Rekd-Engine\Rekd-Engine.vcxproj", "{92A98969-86E6-44BE-9966-26AFEA8AF146}"
@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rekd-Test", "Rekd-Test\Rekd
 	ProjectSection(ProjectDependencies) = postProject
 		{92A98969-86E6-44BE-9966-26AFEA8AF146} = {92A98969-86E6-44BE-9966-26AFEA8AF146}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rekd-Editor", "Rekd-Editor\Rekd-Editor.vcxproj", "{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{10000982-5C02-4CB2-A1A7-8C8D99800799}.Debug|Win32.Build.0 = Debug|Win32
 		{10000982-5C02-4CB2-A1A7-8C8D99800799}.Release|Win32.ActiveCfg = Release|Win32
 		{10000982-5C02-4CB2-A1A7-8C8D99800799}.Release|Win32.Build.0 = Release|Win32
+		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Debug|Win32.Build.0 = Debug|Win32
+		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Release|Win32.ActiveCfg = Release|Win32
+		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
