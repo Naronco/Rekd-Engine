@@ -25,19 +25,16 @@
     <Filter Include="Quelldateien\Physics">
       <UniqueIdentifier>{065e1f06-8641-40a8-848e-f3484bfb4385}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfacedateien\Components">
+      <UniqueIdentifier>{8cb148f7-895b-4367-ab72-2e1d77a22bd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rekd2D.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="IContainer.h">
-      <Filter>Interfacedateien</Filter>
-    </ClInclude>
     <ClInclude Include="Error.h">
       <Filter>Enumdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderableContainer.h">
-      <Filter>Interfacedateien</Filter>
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Headerdateien</Filter>
@@ -108,11 +105,20 @@
     <ClInclude Include="RunnableWindow.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckboxComponent.h">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TextboxComponent.h">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IContainer.cpp">
-      <Filter>Interfacedateien</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -148,6 +154,18 @@
     </ClCompile>
     <ClCompile Include="PredefinedShader.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnableWindow.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckboxComponent.cpp">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TextboxComponent.cpp">
+      <Filter>Interfacedateien\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

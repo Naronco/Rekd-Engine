@@ -1,6 +1,7 @@
 #ifndef REKD_SHADER_H_
 #define REKD_SHADER_H_
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <gl\glew.h>

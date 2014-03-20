@@ -4,14 +4,12 @@
 
 using namespace Rekd2D::Core;
 
-class MainWindow : public Game
+class MainWindow : public RunnableWindow
 {
 public:
 	MainWindow();
 
-	void Init();
 	void Load();
-	void Update(unsigned int time);
-	void Render(unsigned int time);
-	void Unload();
+	void Deinit();
+	void AddCheckbox(int x, int y);
 };

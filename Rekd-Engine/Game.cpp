@@ -4,15 +4,17 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	InitGL(2, 1);
-	glEnable(GL_TEXTURE_2D);
-	Init();
 	m_Window = new Window(title, width, height);
-	int err = SDLNet_Init();
+	int err = glewInit();
+	if (err != 0) std::cout << "GLEW ERROR " << err << ": " << glewGetErrorString(err) << std::endl;
+	Init();
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	err = SDLNet_Init();
 	if (err != 0) std::cout << "SDLNet ERROR " << err << ": " << SDLNet_GetError() << std::endl;
 	err = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 	if (!err) std::cout << "IMG ERROR " << err << ": " << IMG_GetError() << std::endl;
-	err = glewInit();
-	if (err != 0) std::cout << "GLEW ERROR " << err << ": " << glewGetErrorString(err) << std::endl;
 	m_Renderer = new Renderer(m_Window);
 	m_Window->GenerateFramebuffer();
 	m_PostProcess = new PredefinedShader(

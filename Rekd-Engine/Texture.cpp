@@ -4,7 +4,7 @@ Rekd2D::Core::Texture::Texture()
 {
 }
 
-void Rekd2D::Core::Texture::Load(const std::string &file)
+void Rekd2D::Core::Texture::Load(const std::string &file, bool flat)
 {
 	m_Surface = IMG_Load(file.c_str());
 	if (!m_Surface)
@@ -25,8 +25,16 @@ void Rekd2D::Core::Texture::Load(const std::string &file)
 	glGenTextures(1, &m_TextureId);
 	glBindTexture(GL_TEXTURE_2D, m_TextureId);
 	glTexImage2D(GL_TEXTURE_2D, 0, mode, m_Surface->w, m_Surface->h, 0, mode, GL_UNSIGNED_BYTE, m_Surface->pixels);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (flat)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	}
+	else
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	}
 }
 
 void Rekd2D::Core::Texture::Bind()

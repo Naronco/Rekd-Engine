@@ -88,12 +88,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="CheckboxComponent.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="ContentManager.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="IContainer.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="IRenderableContainer.h" />
+    <ClInclude Include="IComponent.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="Matrix3x3.h" />
@@ -104,6 +105,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="RunnableWindow.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="TextboxComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UtilMath.h" />
     <ClInclude Include="Rect.h" />
@@ -117,13 +119,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BezierCurve.cpp" />
+    <ClCompile Include="CheckboxComponent.cpp" />
+    <ClCompile Include="ContentManager.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="IContainer.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="PredefinedShader.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RunnableWindow.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="TextboxComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UtilMath.cpp" />
     <ClCompile Include="Renderer.cpp" />

@@ -1,7 +1,9 @@
 #ifndef REKD_RUNNABLEWINDOW_H_
 #define REKD_RUNNABLEWINDOW_H_
 
+#include <vector>
 #include "Game.h"
+#include "IComponent.h"
 
 namespace Rekd2D
 {
@@ -11,20 +13,19 @@ namespace Rekd2D
 		{
 		public:
 			void Init();
-			void Load();
+			virtual void Load() = 0;
 			void Update(unsigned int time);
 			void Render(unsigned int time);
+			virtual void Deinit() = 0;
 			void Unload();
-			///<summary>Entry point for a Game</summary>
-			///<param name="title">Window title</param>
-			///<param name="width">Window width</param>
-			///<param name="height">Window height</param>
-			void Run(char* title, unsigned int width, unsigned int height);
+
+			void AddComponent(IComponent* component);
 
 		protected:
-			Renderer* m_Renderer;
-			Window* m_Window;
-			PredefinedShader* m_PostProcess;
+			std::vector<IComponent*> m_Components;
+			MouseState m_OldState;
+			ContentManager* m_ContentManager;
+			PredefinedShader* m_DefaultShader;
 		};
 	}
 }

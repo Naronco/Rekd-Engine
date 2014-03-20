@@ -29,5 +29,9 @@
 #include "Renderer.h"
 #include "Game.h"
 #include "Random.h"
+#include "RunnableWindow.h"
+#include "ContentManager.h"
+#include "IComponent.h"
+#include "CheckboxComponent.h"
 
 #endif
