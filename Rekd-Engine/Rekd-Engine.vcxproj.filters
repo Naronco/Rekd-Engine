@@ -105,6 +105,9 @@
     <ClInclude Include="PredefinedShader.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="RunnableWindow.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IContainer.cpp">
