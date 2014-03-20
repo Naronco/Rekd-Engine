@@ -1,9 +1,7 @@
 #pragma once
 
 #include <Rekd2D.h>
-#include <Game.h>
 #include <iostream>
-#include <Random.h>
 
 using namespace Rekd2D::Core;
 

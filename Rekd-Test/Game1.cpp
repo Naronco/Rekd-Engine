@@ -166,7 +166,7 @@ void Game1::AddRope(int x, int y)
 	b2Body* body = world->AddRigidBody(&bd);
 	b2FixtureDef fixDef;
 	fixDef.shape = &charShape;
-	fixDef.density = 0.5f;
+	fixDef.density = 10.0f;
 	fixDef.friction = 0.8f;
 	fixDef.restitution = 0.2f;
 	body->CreateFixture(&fixDef);
@@ -175,6 +175,12 @@ void Game1::AddRope(int x, int y)
 	jointDef.enableLimit = false;
 	jointDef.enableMotor = false;
 	world->CreateJoint(&jointDef);
+
+	b2RopeJointDef ropejointDef;
+	ropejointDef.bodyA = box;
+	ropejointDef.bodyB = body;
+	ropejointDef.maxLength = 9.0f;
+	world->CreateJoint(&ropejointDef);
 }
 
 void Game1::Load()

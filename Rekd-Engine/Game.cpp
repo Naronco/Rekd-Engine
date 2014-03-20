@@ -3,7 +3,7 @@
 void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int height)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	Rekd::InitGL(2, 1);
+	InitGL(2, 1);
 	glEnable(GL_TEXTURE_2D);
 	Init();
 	m_Window = new Window(title, width, height);
@@ -75,6 +75,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 				Keyboard::SetState(ks);
 			}
 		}
+		m_Renderer->Clear(Color(43, 78, 124));
 		Update(delta);
 		Render(delta);
 		m_Window->UnbindFramebuffer();

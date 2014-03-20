@@ -27,23 +27,7 @@
 #include "Keyboard.h"
 #include "Window.h"
 #include "Renderer.h"
-
-class Rekd
-{
-public:
-	inline static void InitGL(int maj, int min)
-	{
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, maj);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, min);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		glClearColor(0, 0, 0, 1);
-	}
-};
+#include "Game.h"
+#include "Random.h"
 
 #endif

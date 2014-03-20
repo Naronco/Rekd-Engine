@@ -1,8 +1,9 @@
 #ifndef REKD_PHYSICS_H_
 #define REKD_PHYSICS_H_
 
-#include "Rekd2D.h"
+#include "Vector2.h"
 #include <vector>
+#include <Box2D/Box2D.h>
 
 namespace Rekd2D
 {

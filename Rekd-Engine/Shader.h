@@ -1,9 +1,16 @@
 #ifndef REKD_SHADER_H_
 #define REKD_SHADER_H_
 
-#include "Rekd2D.h"
+#include <iostream>
+#include <string>
+#include <gl\glew.h>
 #include <SDL_opengl.h>
 #include <map>
+#include "Vector2.h"
+#include "Vector3.h"
+#include "Vector4.h"
+#include "Matrix3x3.h"
+#include "Matrix4x4.h"
 
 namespace Rekd2D
 {
