@@ -38,13 +38,32 @@ void Rekd2D::Core::Renderer::DrawRect(Matrix3x3F rect, Color c)
 	glRotatef(rect.GetRotation() * 180 / 3.1415926f, 0, 0, 1);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0, 0);
-	glVertex2f(-rect.GetScale().x, -rect.GetScale().y);
+	glVertex2f(0, 0);
 	glTexCoord2f(1, 0);
-	glVertex2f(rect.GetScale().x, -rect.GetScale().y);
+	glVertex2f(rect.GetScale().x, 0);
 	glTexCoord2f(1, 1);
 	glVertex2f(rect.GetScale().x, rect.GetScale().y);
 	glTexCoord2f(0, 1);
-	glVertex2f(-rect.GetScale().x, rect.GetScale().y);
+	glVertex2f(0, rect.GetScale().y);
+	glEnd();
+	glRotatef(-rect.GetRotation() * 180 / 3.1415926f, 0, 0, 1);
+	glTranslatef(-rect.GetTranslation().x, -rect.GetTranslation().y, 0);
+}
+
+void Rekd2D::Core::Renderer::DrawRect(Matrix3x3F rect, RectF dest, Color c)
+{
+	glColor4f(c.R / 255.0f, c.G / 255.0f, c.B / 255.0f, c.A / 255.0f);
+	glTranslatef(rect.GetTranslation().x, rect.GetTranslation().y, 0);
+	glRotatef(rect.GetRotation() * 180 / 3.1415926f, 0, 0, 1);
+	glBegin(GL_QUADS);
+	glTexCoord2f(dest.X, dest.Y);
+	glVertex2f(0, 0);
+	glTexCoord2f(dest.X + dest.Width, dest.Y);
+	glVertex2f(rect.GetScale().x, 0);
+	glTexCoord2f(dest.X + dest.Width, dest.Y + dest.Height);
+	glVertex2f(rect.GetScale().x, rect.GetScale().y);
+	glTexCoord2f(dest.X, dest.Y + dest.Height);
+	glVertex2f(0, rect.GetScale().y);
 	glEnd();
 	glRotatef(-rect.GetRotation() * 180 / 3.1415926f, 0, 0, 1);
 	glTranslatef(-rect.GetTranslation().x, -rect.GetTranslation().y, 0);

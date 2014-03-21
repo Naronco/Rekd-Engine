@@ -29,6 +29,11 @@ namespace Rekd2D
 			/// <param name="c">Color</param>
 			void DrawRect(Matrix3x3F rect, Color c);
 			/// <summary>Renders a Rectangle</summary>
+			/// <param name="transform">3x3 Transformation Matrix</param>
+			/// <param name="dest">Clipped source</param>
+			/// <param name="c">Color</param>
+			void DrawRect(Matrix3x3F rect, RectF dest, Color c);
+			/// <summary>Renders a Rectangle</summary>
 			/// <param name="rect">Position and Size</param>
 			/// <param name="dest">Clipped source</param>
 			/// <param name="c">Color</param>
