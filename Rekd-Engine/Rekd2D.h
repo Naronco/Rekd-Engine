@@ -33,5 +33,6 @@
 #include "ContentManager.h"
 #include "IComponent.h"
 #include "CheckboxComponent.h"
+#include "TextboxComponent.h"
 
 #endif
