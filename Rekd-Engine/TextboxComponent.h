@@ -8,10 +8,6 @@ namespace Rekd2D
 {
 	namespace Core
 	{
-		enum TextboxFlags
-		{
-			TEXTBOX_FOCUSED
-		};
 		class TextboxComponent : public IComponent
 		{
 		public:
