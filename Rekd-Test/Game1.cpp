@@ -59,6 +59,45 @@ void Game1::AddCircle(int x, int y, int rx, int ry)
 	body->CreateFixture(&fixDef);
 }
 
+void Game1::AddCircleBox(int x, int y, int rx, int ry)
+{
+	b2CircleShape charShape;
+	charShape.m_radius = 5;
+	b2BodyDef bd;
+	bd.type = b2_dynamicBody;
+	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
+	bd.linearVelocity = b2Vec2((float)rx, (float)ry);
+	bd.userData = "circle";
+	b2Body* body = world->AddRigidBody(&bd);
+	b2FixtureDef fixDef;
+	fixDef.shape = &charShape;
+	fixDef.density = 4.0f;
+	fixDef.friction = 0.2f;
+	fixDef.restitution = 0.8f;
+	body->CreateFixture(&fixDef);
+
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(5, 5);
+	b2BodyDef bd2;
+	bd2.type = b2_dynamicBody;
+	bd2.position = b2Vec2(x / 10.0f + 20, y / 10.0f);
+	bd2.linearVelocity = b2Vec2((float)rx, (float)ry);
+	bd2.userData = "cube";
+	b2Body* boxBody = world->AddRigidBody(&bd2);
+	b2FixtureDef boxDef;
+	boxDef.shape = &boxShape;
+	boxDef.density = 4.0f;
+	boxDef.friction = 0.8f;
+	boxDef.restitution = 0.2f;
+	boxBody->CreateFixture(&boxDef);
+
+	b2DistanceJointDef jointDef;
+	jointDef.Initialize(body, boxBody, body->GetWorldCenter(), boxBody->GetWorldCenter());
+	jointDef.collideConnected = true;
+
+	world->AddJoint(&jointDef);
+}
+
 void Game1::AddTriangle(int x, int y, int rx, int ry)
 {
 	b2PolygonShape charShape;
@@ -103,6 +142,53 @@ void Game1::AddArrow(int x, int y)
 	fixDef.friction = 0.8f;
 	fixDef.restitution = 0.2f;
 	body->CreateFixture(&fixDef);
+}
+
+void Game1::AddPlatform(int x, int y)
+{
+	b2PolygonShape charShape;
+	charShape.SetAsBox(5, 1);
+	b2BodyDef bd;
+	bd.type = b2_dynamicBody;
+	bd.position = b2Vec2(x / 10.0f, y / 10.0f);
+	bd.userData = "plat";
+	b2Body* body = world->AddRigidBody(&bd);
+	b2FixtureDef fixDef;
+	fixDef.shape = &charShape;
+	fixDef.density = 0.1f;
+	fixDef.friction = 1.0f;
+	fixDef.restitution = 0.1f;
+	body->CreateFixture(&fixDef);
+
+	b2PolygonShape groundShape;
+	groundShape.SetAsBox(5, 1);
+	b2BodyDef bdGround;
+	bdGround.type = b2_staticBody;
+	bdGround.position = b2Vec2(x / 10.0f, 35);
+	bdGround.userData = "plat";
+	b2Body* groundBody = world->AddRigidBody(&bdGround);
+	b2FixtureDef fixDefGround;
+	fixDefGround.shape = &groundShape;
+	fixDefGround.density = 40.0f;
+	fixDefGround.friction = 0.8f;
+	fixDefGround.restitution = 0.2f;
+	groundBody->CreateFixture(&fixDefGround);
+
+	b2PrismaticJointDef jointDef;
+
+	b2Vec2 worldAxis(0.0f, 1.0f);
+
+	jointDef.Initialize(body, groundBody, body->GetWorldCenter(), worldAxis);
+
+	jointDef.lowerTranslation = 0.0f;
+	jointDef.upperTranslation = 20.0f;
+	jointDef.enableLimit = true;
+	jointDef.maxMotorForce = 500000.0f;
+	jointDef.motorSpeed = 500000.0f;
+	jointDef.enableMotor = true;
+
+	world->AddJoint(&jointDef);
+	prismatics.push_back(&jointDef);
 }
 
 void Game1::AddRope(int x, int y)
@@ -193,7 +279,7 @@ void Game1::Load()
 		);
 	m_Shader->Bind();
 	m_PostProcess->SetVertex("void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }");
-	m_PostProcess->SetFragment("uniform sampler2D sampler; void main() { gl_FragColor = 1 - texture2D(sampler, gl_TexCoord[0].st); }");
+	m_PostProcess->SetFragment("uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }");
 	m_PostProcess->Compile();
 }
 
@@ -233,6 +319,28 @@ void Game1::Update(unsigned int time)
 	{
 		AddArrow(mState.X, mState.Y);
 	}
+	if (cState.IsKeyDown(SDLK_n) && !oldState.IsKeyDown(SDLK_n))
+	{
+		AddCircleBox(mState.X, mState.Y, mState.RelX, mState.RelY);
+	}
+	if (cState.IsKeyDown(SDLK_m) && !oldState.IsKeyDown(SDLK_m))
+	{
+		AddPlatform(mState.X, mState.Y);
+	}
+	if (cState.IsKeyDown(SDLK_UP) && !oldState.IsKeyDown(SDLK_UP))
+	{
+		for (unsigned int i = 0; i < world->GetJoints().size(); i++)
+		{
+			((b2PrismaticJoint*)world->GetJoints()[i])->SetMotorSpeed(500000.0f);
+		}
+	}
+	if (cState.IsKeyDown(SDLK_DOWN) && !oldState.IsKeyDown(SDLK_DOWN))
+	{
+		for (unsigned int i = 0; i < world->GetJoints().size(); i++)
+		{
+			((b2PrismaticJoint*)world->GetJoints()[i])->SetMotorSpeed(-500000.0f);
+		}
+	}
 	oldState = cState;
 }
 
@@ -268,6 +376,19 @@ void Game1::Render(unsigned int time)
 				glVertex3f(50.01f, 50.01f, -0.9f);
 				glTexCoord2f(0, 1);
 				glVertex3f(-50.01f, 50.01f, -0.9f);
+				glEnd();
+			}
+			if (world->GetBodies()[i]->GetUserData() == "plat")
+			{
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
+				glVertex3f(-50.01f, -10.01f, -0.9f);
+				glTexCoord2f(1, 0);
+				glVertex3f(50.01f, -10.01f, -0.9f);
+				glTexCoord2f(1, 1);
+				glVertex3f(50.01f, 10.01f, -0.9f);
+				glTexCoord2f(0, 1);
+				glVertex3f(-50.01f, 10.01f, -0.9f);
 				glEnd();
 			}
 			else if (world->GetBodies()[i]->GetUserData() == "cubeanch")

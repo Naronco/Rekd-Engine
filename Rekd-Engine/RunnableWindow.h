@@ -4,6 +4,7 @@
 #include <vector>
 #include "Game.h"
 #include "IComponent.h"
+#include "ComponentFlag.h"
 
 namespace Rekd2D
 {

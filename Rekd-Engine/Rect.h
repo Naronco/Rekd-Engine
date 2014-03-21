@@ -15,6 +15,10 @@ namespace Rekd2D
 			{
 			}
 
+			inline Rect(Vector2<T> a, Vector2<T> b) : X(a.x), Y(a.y), Width(b.x), Height(b.y)
+			{
+			}
+
 			inline Rect(T X_, T Y_, T Width_, T Height_) : X(X_), Y(Y_), Width(Width_), Height(Height_)
 			{
 			}

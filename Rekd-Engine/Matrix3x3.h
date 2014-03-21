@@ -1,7 +1,7 @@
 #ifndef REKD_MATRIX3X3_H_
 #define REKD_MATRIX3X3_H_
 
-#include "Vector3.h"
+#include "Vector2.h"
 
 namespace Rekd2D
 {
@@ -98,60 +98,38 @@ namespace Rekd2D
 				return Set(r);
 			}
 
+			/// <summary>Applys the matrix to a vector, and returns a new vector</summary>
+			inline Vector2<T> Apply(const Vector2<T> &vec) const
+			{
+				T rot = atan(m10 / m11);
+				T sx = sqrt(m00 * m00 + m01 * m01);
+				T sy = sqrt(m10 * m10 + m11 * m11);
+				return Vector2<T>(m02 + sx * (cos(rot) * vec.x - sin(rot) * vec.y), m12 + sy * (sin(rot) * vec.x - cos(rot) * vec.y));
+			}
+
 			/// <summary>Rotates the matrix over the X axis</summary>
 			/// <param name="angle">The amount to rotate in radians</param>
-			inline Matrix3x3<T> &RotateX(T angle)
-			{
-				T s = (T)sin(angle);
-				T c = (T)cos(angle);
-				return (*this *= Matrix3x3<T>(1, 0, 0, 0, c, -s, 0, s, c));
-			}
-
-			/// <summary>Rotates the matrix over the Y axis</summary>
-			/// <param name="angle">The amount to rotate in radians</param>
-			inline Matrix3x3<T> &RotateY(T angle)
-			{
-				T s = (T)sin(angle);
-				T c = (T)cos(angle);
-				return (*this *= Matrix3x3<T>(c, 0, s, 0, 1, 0, -s, 0, c));
-			}
-
-			/// <summary>Rotates the matrix over the Z axis</summary>
-			/// <param name="angle">The amount to rotate in radians</param>
-			inline Matrix3x3<T> &RotateZ(T angle)
+			inline Matrix3x3<T> &Rotate(T angle)
 			{
 				T s = (T)sin(angle);
 				T c = (T)cos(angle);
 				return (*this *= Matrix3x3<T>(c, -s, 0, s, c, 0, 0, 0, 1));
 			}
 
-			/// <summary>Sets to a new rotation matrix</summary>
-			/// <param name="forward">The forward looking vector</param>
-			/// <param name="up">The up looking vector</param>
-			/// <param name="right">The right looking vector</param>
-			inline Matrix3x3<T> &SetRotation(const Vector3<T> &forward, const Vector3<T> &up, const Vector3<T> &right)
-			{
-				return Set(right.x, right.y, right.z, up.x, up.y, up.z, forward.x, forward.y, forward.z);
-			}
-
-			/// <summary>Sets to a new rotation matrix, and calculates the right looking vector</summary>
-			/// <param name="forward">The forward looking vector</param>
-			/// <param name="up">The up looking vector</param>
-			inline Matrix3x3<T> &SetRotation(const Vector3<T> &forward, const Vector3<T> &up)
-			{
-				Vector3<T> right(up);
-				right.Cross(forward).Normalize();
-
-				return SetRotation(forward, up, right);
-			}
-
 			/// <summary>Scales the matrix</summary>
 			/// <param name="x">The x scaling</param>
 			/// <param name="y">The y scaling</param>
-			/// <param name="z">The z scaling</param>
-			inline Matrix3x3<T> &Scale(T x, T y, T z)
+			inline Matrix3x3<T> &Scale(T x, T y)
 			{
-				return (*this *= Matrix3x3<T>(x, 0, 0, 0, y, 0, 0, 0, z));
+				return (*this *= Matrix3x3<T>(x, 0, 0, 0, y, 0, 0, 0, 1));
+			}
+
+			/// <summary>Translates the matrix</summary>
+			/// <param name="x">The x offset</param>
+			/// <param name="y">The y offset</param>
+			inline Matrix3x3<T> &Translate(T x, T y)
+			{
+				return (*this *= Matrix3x3<T>(1, 0, x, 0, 1, y, 0, 0, 1));
 			}
 
 			/// <summary>Transposes the matrix</summary>
@@ -159,31 +137,50 @@ namespace Rekd2D
 			{
 				return Set(m00, m10, m20, m01, m11, m21, m02, m12, m22);
 			}
+
+			/// <summary>Returns the rotation</summary>
+			inline T GetRotation() const
+			{
+				return (T)atan(m10 / m11);
+			}
+
+			/// <summary>Returns the scale</summary>
+			inline Vector2<T> GetScale() const
+			{
+				return Vector2<T>(sqrt(m00 * m00 + m01 * m01), sqrt(m10 * m10 + m11 * m11));
+			}
+
+			/// <summary>Returns the translation</summary>
+			inline Vector2<T> GetTranslation() const
+			{
+				return Vector2<T>(m02, m12);
+			}
 		};
 
+		/*
 		template <typename T1, typename T2>
 		inline Vector3<T1> &operator *= (const Vector3<T1> &v, const Matrix3x3<T2> &m)
 		{
-			return v.Set(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
-				m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
-				m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
+		return v.Set(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
+		m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
+		m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
 		}
 
 		template <typename T1, typename T2>
 		inline Vector3<T1> operator * (const Vector3<T1> &v, const Matrix3x3<T2> &m)
 		{
-			return Vector3<T1>(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
-				m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
-				m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
+		return Vector3<T1>(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
+		m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
+		m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
 		}
 
 		template <typename T1, typename T2>
 		inline Vector3<T1> operator * (const Matrix3x3<T2> &m, const Vector3<T1> &v)
 		{
-			return Vector3<T1>(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
-				m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
-				m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
-		}
+		return Vector3<T1>(m.m00 * v.x + m.m01 * v.y + m.m02 * v.z,
+		m.m10 * v.x + m.m11 * v.y + m.m12 * v.z,
+		m.m20 * v.x + m.m21 * v.y + m.m22 * v.z);
+		}*/
 
 		typedef Matrix3x3<float> Matrix3x3F;
 		typedef Matrix3x3<double> Matrix3x3D;

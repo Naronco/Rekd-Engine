@@ -90,6 +90,7 @@
     <ClInclude Include="BezierCurve.h" />
     <ClInclude Include="CheckboxComponent.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="ComponentFlag.h" />
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />

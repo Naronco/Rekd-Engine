@@ -5,6 +5,7 @@
 #include "Color.h"
 #include "Rect.h"
 #include "Vector2.h"
+#include "Matrix3x3.h"
 
 namespace Rekd2D
 {
@@ -23,6 +24,10 @@ namespace Rekd2D
 			/// <param name="rect">Position and Size</param>
 			/// <param name="c">Color</param>
 			void DrawRect(RectF rect, Color c);
+			/// <summary>Renders a Rectangle</summary>
+			/// <param name="transform">3x3 Transformation Matrix</param>
+			/// <param name="c">Color</param>
+			void DrawRect(Matrix3x3F rect, Color c);
 			/// <summary>Renders a Rectangle</summary>
 			/// <param name="rect">Position and Size</param>
 			/// <param name="dest">Clipped source</param>

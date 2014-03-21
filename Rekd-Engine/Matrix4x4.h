@@ -2,6 +2,7 @@
 #define REKD_MATRIX4X4_H_
 
 #include "Matrix3x3.h"
+#include "Vector3.h"
 #include "Vector4.h"
 
 namespace Rekd2D

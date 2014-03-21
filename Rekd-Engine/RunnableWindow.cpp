@@ -18,7 +18,12 @@ void Rekd2D::Core::RunnableWindow::Render(unsigned int time)
 	MouseState state = Mouse::GetState();
 	for (std::vector<IComponent*>::iterator it = m_Components.begin(); it != m_Components.end(); ++it)
 	{
-		if ((*it)->GetBounds().Collides(Vector2F(state.X, state.Y)) && !state.MouseButtons[1] && m_OldState.MouseButtons[1]) (*it)->Click(1);
+		if ((*it)->GetBounds().Collides(Vector2F(state.X, state.Y)))
+		{
+			if (!state.MouseButtons[1] && m_OldState.MouseButtons[1]) (*it)->Click(1);
+		}
+		if ((*it)->GetFlags() & ComponentFlag::Pushable != 0) (*it)->SetFlag(ComponentFlag::Pushable, (*it)->GetBounds().Collides(Vector2F(state.X, state.Y)) && state.MouseButtons[1]);
+		if ((*it)->GetFlags() & ComponentFlag::Hoverable != 0) (*it)->SetFlag(ComponentFlag::Pushable, (*it)->GetBounds().Collides(Vector2F(state.X, state.Y)));
 		(*it)->Render(m_Renderer);
 	}
 	m_OldState = state;

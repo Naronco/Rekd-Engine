@@ -6,7 +6,7 @@ Rekd2D::Core::CheckboxComponent::CheckboxComponent()
 
 Rekd2D::Core::RectF Rekd2D::Core::CheckboxComponent::GetBounds()
 {
-	return m_Transform;
+	return RectF(m_Transform.GetTranslation(), m_Transform.GetScale());
 }
 
 void Rekd2D::Core::CheckboxComponent::Render(Renderer* renderer)
@@ -37,7 +37,7 @@ void Rekd2D::Core::CheckboxComponent::Load(ContentManager* content)
 	CheckBoxOff = content->LoadTexture("CheckBoxOff.png", false);
 	CheckBoxOn = content->LoadTexture("CheckBoxOn.png", false);
 }
-unsigned int Rekd2D::Core::CheckboxComponent::GetFlagID()
+unsigned int Rekd2D::Core::CheckboxComponent::GetFlags()
 {
 	return 0;
 }

@@ -6,7 +6,7 @@ Rekd2D::Core::TextboxComponent::TextboxComponent()
 
 Rekd2D::Core::RectF Rekd2D::Core::TextboxComponent::GetBounds()
 {
-	return m_Transform;
+	return RectF(m_Transform.GetTranslation(), m_Transform.GetScale());
 }
 
 void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
@@ -19,6 +19,7 @@ void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
 	{
 		TextboxFocused->Bind();
 	}
+	/*renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
@@ -26,8 +27,7 @@ void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
 	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
+	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));*/
 }
 
 void Rekd2D::Core::TextboxComponent::SetFlag(unsigned int type, unsigned int value)
@@ -45,7 +45,7 @@ void Rekd2D::Core::TextboxComponent::Load(ContentManager* content)
 	TextboxFocused = content->LoadTexture("TextBoxActive.png", false);
 }
 
-unsigned int Rekd2D::Core::TextboxComponent::GetFlagID()
+unsigned int Rekd2D::Core::TextboxComponent::GetFlags()
 {
-	return 1;
+	return ComponentFlag::Focusable;
 }

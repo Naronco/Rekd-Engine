@@ -2,6 +2,7 @@
 #define REKD_TEXTBOX_COMPONENT_H_
 
 #include "IComponent.h"
+#include "ComponentFlag.h"
 
 namespace Rekd2D
 {
@@ -22,7 +23,7 @@ namespace Rekd2D
 			void SetFlag(unsigned int type, unsigned int value);
 			void Click(unsigned char button);
 			void Load();
-			unsigned int GetFlagID();
+			unsigned int GetFlags();
 		protected:
 			bool Focused = false;
 			Texture* Textbox;

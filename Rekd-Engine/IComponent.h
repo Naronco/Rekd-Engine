@@ -3,7 +3,7 @@
 
 #include "ContentManager.h"
 #include "Renderer.h"
-#include "Vector2.h"
+#include "Matrix3x3.h"
 
 namespace Rekd2D
 {
@@ -17,9 +17,9 @@ namespace Rekd2D
 			virtual void Render(Renderer* renderer) = 0;
 			virtual void SetFlag(unsigned int type, unsigned int value) = 0;
 			virtual void Click(unsigned char button) = 0;
-			virtual unsigned int GetFlagID() = 0;
+			virtual unsigned int GetFlags() = 0;
 
-			RectF m_Transform;
+			Matrix3x3F m_Transform;
 		};
 	}
 }

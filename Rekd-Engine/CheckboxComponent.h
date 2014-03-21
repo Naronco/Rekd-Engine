@@ -18,7 +18,7 @@ namespace Rekd2D
 			void SetFlag(unsigned int type, unsigned int value);
 			void Click(unsigned char button);
 			void Load();
-			unsigned int GetFlagID();
+			unsigned int GetFlags();
 		protected:
 			bool Checked = false;
 			Texture* CheckBoxOff;

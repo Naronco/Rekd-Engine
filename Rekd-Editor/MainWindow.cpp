@@ -6,13 +6,7 @@ MainWindow::MainWindow()
 
 void MainWindow::Load()
 {
-	for (int x = 0; x < 800; x += 10)
-	{
-		for (int y = 0; y < 480; y += 10)
-		{
-			AddCheckbox(x, y);
-		}
-	}
+	AddCheckbox(32, 32);
 }
 
 void MainWindow::Deinit()
@@ -22,6 +16,10 @@ void MainWindow::Deinit()
 void MainWindow::AddCheckbox(int x, int y)
 {
 	CheckboxComponent* checkbox = new CheckboxComponent();
-	checkbox->m_Transform = RectF(x, y, 8, 8);
+	Matrix3x3F transform;
+	transform.Rotate(0.9f);
+	transform.Translate(100, 0);
+	transform.Scale(32, 32);
+	checkbox->m_Transform = transform;
 	AddComponent(checkbox);
 }
