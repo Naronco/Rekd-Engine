@@ -1,19 +1,17 @@
-#ifndef REKD_TEXTBOX_COMPONENT_H_
-#define REKD_TEXTBOX_COMPONENT_H_
+#ifndef REKD_TEXT_COMPONENT_H_
+#define REKD_TEXT_COMPONENT_H_
 
 #include "IComponent.h"
-#include "KeyboardState.h"
-#include "TextComponent.h"
 #include "ComponentFlag.h"
 
 namespace Rekd2D
 {
 	namespace Core
 	{
-		class TextboxComponent : public IComponent
+		class TextComponent : public IComponent
 		{
 		public:
-			TextboxComponent();
+			TextComponent();
 
 			void Load(ContentManager* content);
 			RectF GetBounds();
@@ -22,12 +20,10 @@ namespace Rekd2D
 			void Click(unsigned char button);
 			void Load();
 			unsigned int GetFlags();
-			void OnKeyboard(KeyboardState ks, KeyboardState old);
+			std::string Text;
 		protected:
 			bool Focused = false;
-			Texture* Textbox;
-			Texture* TextboxFocused;
-			TextComponent* m_Label;
+			Texture* m_Font;
 		};
 	}
 }

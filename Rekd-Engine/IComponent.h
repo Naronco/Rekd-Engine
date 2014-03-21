@@ -4,6 +4,7 @@
 #include "ContentManager.h"
 #include "Renderer.h"
 #include "Matrix3x3.h"
+#include "KeyboardState.h"
 
 namespace Rekd2D
 {
@@ -18,6 +19,7 @@ namespace Rekd2D
 			virtual void SetFlag(unsigned int type, unsigned int value) = 0;
 			virtual void Click(unsigned char button) = 0;
 			virtual unsigned int GetFlags() = 0;
+			virtual void OnKeyboard(KeyboardState ks, KeyboardState old) {}
 
 			Matrix3x3F m_Transform;
 		};

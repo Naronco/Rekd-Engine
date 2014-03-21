@@ -26,6 +26,7 @@ namespace Rekd2D
 		protected:
 			std::vector<IComponent*> m_Components;
 			MouseState m_OldState;
+			KeyboardState m_OldKeyState;
 			ContentManager* m_ContentManager;
 			PredefinedShader* m_DefaultShader;
 		};

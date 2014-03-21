@@ -353,8 +353,6 @@ void Game1::Render(unsigned int time)
 
 	b2Vec2 gpos = ground->GetPosition();
 
-	m_Font->Bind();
-
 	m_Renderer->DrawString("gflkhjnlghngfdhnilILNILSIGFDL561486486:;:_.,+#", Vector2F(32, 32), Color(255, 255, 255));
 	m_Renderer->DrawString("99458455.,897861563-@web.de", Vector2F(32, 48), Color(0, 120, 0));
 

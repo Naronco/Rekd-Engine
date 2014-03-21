@@ -120,6 +120,9 @@
     <ClInclude Include="ComponentFlag.h">
       <Filter>Enumdateien</Filter>
     </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -168,6 +171,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="TextboxComponent.cpp">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
       <Filter>Interfacedateien\Components</Filter>
     </ClCompile>
   </ItemGroup>

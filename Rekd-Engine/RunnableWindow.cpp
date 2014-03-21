@@ -16,6 +16,7 @@ void Rekd2D::Core::RunnableWindow::Render(unsigned int time)
 {
 	m_DefaultShader->Bind();
 	MouseState state = Mouse::GetState();
+	KeyboardState ks = Keyboard::GetState();
 	bool hit = false;
 	for (std::vector<IComponent*>::iterator it = m_Components.begin(); it != m_Components.end(); ++it)
 	{
@@ -34,9 +35,14 @@ void Rekd2D::Core::RunnableWindow::Render(unsigned int time)
 		}
 		if ((ComponentFlag::Pushable & (*it)->GetFlags()) == ComponentFlag::Pushable) (*it)->SetFlag(ComponentFlag::Pushable, (*it)->GetBounds().Collides(Vector2F(state.X, state.Y)) && state.MouseButtons[1]);
 		if ((ComponentFlag::Hoverable & (*it)->GetFlags()) == ComponentFlag::Hoverable) (*it)->SetFlag(ComponentFlag::Hoverable, (*it)->GetBounds().Collides(Vector2F(state.X, state.Y)));
+		if ((ComponentFlag::HookKeyboard & (*it)->GetFlags()) == ComponentFlag::HookKeyboard)
+		{
+			(*it)->OnKeyboard(ks, m_OldKeyState);
+		}
 		(*it)->Render(m_Renderer);
 	}
 	if (hit) Unfocus();
+	m_OldKeyState = ks;
 	m_OldState = state;
 }
 

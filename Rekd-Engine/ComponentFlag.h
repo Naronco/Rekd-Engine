@@ -10,7 +10,8 @@ namespace Rekd2D
 			{
 				Hoverable = 1 << 0,
 				Pushable = 1 << 1,
-				Focusable = 1 << 2
+				Focusable = 1 << 2,
+				HookKeyboard = 1 << 3
 			};
 		}
 	}
