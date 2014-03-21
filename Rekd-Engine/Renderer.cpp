@@ -132,3 +132,17 @@ void Rekd2D::Core::Renderer::Dispose()
 {
 	SDL_GL_DeleteContext(m_Context);
 }
+
+void Rekd2D::Core::Renderer::DrawString(std::string text, Vector2F pos, Color c)
+{
+	for (int i = 0; i < text.length(); i++)
+	{
+		DrawChar(text[i], pos + Vector2F(10 * i, 0), c);
+	}
+}
+
+void Rekd2D::Core::Renderer::DrawChar(char letter, Vector2F pos, Color c)
+{
+	if (letter < 33 || letter > 126) return;
+	DrawRect(RectF(pos, Vector2F(10, 16)), RectF((letter - 33) * 10 / 940.0f, 0, 10 / 940.0f, 1), c);
+}

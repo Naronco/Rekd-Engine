@@ -1,6 +1,7 @@
 #ifndef REKD_RENDERER_H_
 #define REKD_RENDERER_H_
 
+#include <string>
 #include "Window.h"
 #include "Color.h"
 #include "Rect.h"
@@ -45,6 +46,16 @@ namespace Rekd2D
 			/// <param name="rota">Rotation</param>
 			/// <param name="origin">Rotiation origin</param>
 			void DrawRect(RectF rect, RectF dest, Color c, float rota, Vector2F origin);
+			/// <summary>Renders a Text</summary>
+			/// <param name="text">Content</param>
+			/// <param name="pos">Position</param>
+			/// <param name="c">Color</param>
+			void DrawString(std::string text, Vector2F pos, Color c);
+			/// <summary>Renders a Letter</summary>
+			/// <param name="letter">Letter</param>
+			/// <param name="pos">Position</param>
+			/// <param name="c">Color</param>
+			void DrawChar(char letter, Vector2F pos, Color c);
 			/// <summary>Converts a Surface to a Texture</summary>
 			/// <param name="surf">Surface to be converted</param>
 			int SurfaceToTexture(SDL_Surface* surf);
