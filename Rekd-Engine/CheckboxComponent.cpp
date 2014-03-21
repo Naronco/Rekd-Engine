@@ -19,11 +19,13 @@ void Rekd2D::Core::CheckboxComponent::Render(Renderer* renderer)
 	{
 		CheckBoxOff->Bind();
 	}
-	renderer->DrawRect(m_Transform, Color(255, 255, 255));
+	if (Active) renderer->DrawRect(m_Transform, Color(130, 146, 159));
+	else renderer->DrawRect(m_Transform, Color(255, 255, 255));
 }
 
 void Rekd2D::Core::CheckboxComponent::SetFlag(unsigned int type, unsigned int value)
 {
+	if (type == ComponentFlag::Pushable) Active = value == 1;
 }
 
 void Rekd2D::Core::CheckboxComponent::Click(unsigned char button)
@@ -39,5 +41,10 @@ void Rekd2D::Core::CheckboxComponent::Load(ContentManager* content)
 }
 unsigned int Rekd2D::Core::CheckboxComponent::GetFlags()
 {
-	return 0;
+	return ComponentFlag::Pushable;
+}
+
+bool Rekd2D::Core::CheckboxComponent::IsChecked()
+{
+	return Checked;
 }

@@ -2,6 +2,7 @@
 #define REKD_CHECKBOX_COMPONENT_H_
 
 #include "IComponent.h"
+#include "ComponentFlag.h"
 
 namespace Rekd2D
 {
@@ -18,9 +19,11 @@ namespace Rekd2D
 			void SetFlag(unsigned int type, unsigned int value);
 			void Click(unsigned char button);
 			void Load();
+			bool IsChecked();
 			unsigned int GetFlags();
 		protected:
 			bool Checked = false;
+			bool Active = false;
 			Texture* CheckBoxOff;
 			Texture* CheckBoxOn;
 		};
