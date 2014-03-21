@@ -23,7 +23,7 @@ public:
 	void AddPlatform(int x, int y);
 
 private:
-	Random m_Random = 0;
+	Random m_Random;
 	b2Body* ground = 0;
 	Physics::World* world = 0;
 	KeyboardState oldState;
