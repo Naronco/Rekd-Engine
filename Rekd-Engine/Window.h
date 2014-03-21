@@ -69,6 +69,8 @@ namespace Rekd2D
 			/// <summary>Handle to a GL Context</summary>
 			SDL_GLContext m_Context = 0;
 
+			int WindowID;
+
 			int m_Width;
 			int m_Height;
 			int m_FramebufferWidth;

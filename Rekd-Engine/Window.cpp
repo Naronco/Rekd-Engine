@@ -12,6 +12,7 @@ Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int heigh
 		glMatrixMode(GL_PROJECTION);
 		glOrtho(0, width, height, 0, -1, 1);
 		glMatrixMode(GL_MODELVIEW);
+		WindowID = SDL_GetWindowID(m_Window);
 	}
 }
 
@@ -68,6 +69,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.Type = EventType::Quit;
 		break;
 	case SDL_WINDOWEVENT:
+		if (ev.window.windowID != WindowID)
+			return true;
 		ne.Type = EventType::Window;
 		ne.WindowEvent.Data1 = ev.window.data1;
 		ne.WindowEvent.Data2 = ev.window.data2;
@@ -92,12 +95,16 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		}
 		break;
 	case SDL_KEYDOWN:
+		if (ev.key.windowID != WindowID)
+			return true;
 		ne.Type = EventType::KeyDown;
 		ne.Keyboard.KeyCode = (unsigned char)ev.key.keysym.sym;
 		ne.Keyboard.Modifiers = ev.key.keysym.mod;
 		ne.Window = ev.key.windowID;
 		break;
 	case SDL_KEYUP:
+		if (ev.key.windowID != WindowID)
+			return true;
 		ne.Type = EventType::KeyUp;
 		ne.Keyboard.KeyCode = (unsigned char)ev.key.keysym.sym;
 		ne.Keyboard.Modifiers = ev.key.keysym.mod;
@@ -111,6 +118,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.MouseMove.RelativeY = ev.motion.yrel;
 		break;
 	case SDL_MOUSEBUTTONDOWN:
+		if (ev.button.windowID != WindowID)
+			return true;
 		ne.Type = EventType::MouseClick;
 		ne.MouseButton.Button = ev.button.button;
 		ne.MouseButton.X = ev.button.x;
@@ -119,6 +128,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.Window = ev.button.windowID;
 		break;
 	case SDL_MOUSEBUTTONUP:
+		if (ev.button.windowID != WindowID)
+			return true;
 		ne.Type = EventType::MouseRelease;
 		ne.MouseButton.Button = ev.button.button;
 		ne.MouseButton.X = ev.button.x;
@@ -127,6 +138,8 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.Window = ev.button.windowID;
 		break;
 	case SDL_MOUSEWHEEL:
+		if (ev.wheel.windowID != WindowID)
+			return true;
 		ne.Type = EventType::MouseWheel;
 		ne.Scroll.X = ev.wheel.x;
 		ne.Scroll.Y = ev.wheel.y;
