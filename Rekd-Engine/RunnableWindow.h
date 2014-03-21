@@ -19,6 +19,7 @@ namespace Rekd2D
 			void Render(unsigned int time);
 			virtual void Deinit() = 0;
 			void Unload();
+			void Unfocus();
 
 			void AddComponent(IComponent* component);
 

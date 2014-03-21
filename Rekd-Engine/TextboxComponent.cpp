@@ -11,7 +11,7 @@ Rekd2D::Core::RectF Rekd2D::Core::TextboxComponent::GetBounds()
 
 void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
 {
-	if (Focused)
+	if (!Focused)
 	{
 		Textbox->Bind();
 	}
@@ -19,20 +19,12 @@ void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
 	{
 		TextboxFocused->Bind();
 	}
-	/*renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));
-	renderer->DrawRect(m_Transform, RectF(), Color(255, 255, 255));*/
+	renderer->DrawRect(m_Transform, Color(255, 255, 255));
 }
 
 void Rekd2D::Core::TextboxComponent::SetFlag(unsigned int type, unsigned int value)
 {
-	if (type == TEXTBOX_FOCUSED) Focused = value == 1;
+	if (type == ComponentFlag::Focusable) Focused = value == 1;
 }
 
 void Rekd2D::Core::TextboxComponent::Click(unsigned char button)
