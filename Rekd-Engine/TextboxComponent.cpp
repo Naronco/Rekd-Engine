@@ -77,6 +77,7 @@ void Rekd2D::Core::TextboxComponent::Load(ContentManager* content)
 	m_Label = new TextComponent();
 	m_Label->Load(content);
 	m_Label->m_Font = m_Font;
+	m_Label->LineHeight = 32;
 }
 
 unsigned int Rekd2D::Core::TextboxComponent::GetFlags()
