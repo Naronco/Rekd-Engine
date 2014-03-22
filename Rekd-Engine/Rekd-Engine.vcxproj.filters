@@ -123,6 +123,9 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Interfacedateien\Components</Filter>
     </ClInclude>
+    <ClInclude Include="FontLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
       <Filter>Interfacedateien\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FontLoader.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -20,6 +20,7 @@ namespace Rekd2D
 			virtual void Click(unsigned char button) = 0;
 			virtual unsigned int GetFlags() = 0;
 			virtual void OnKeyboard(KeyboardState ks, KeyboardState old) {}
+			virtual void OnText(bool append, const std::string& text, int cursor, int selection) {}
 
 			Matrix3x3F m_Transform;
 		};

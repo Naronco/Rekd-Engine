@@ -7,10 +7,16 @@ namespace Rekd2D
 		struct KeyboardState
 		{
 			bool Keys[256];
+			unsigned short Mods[256];
 
 			inline bool IsKeyDown(unsigned char key) const
 			{
 				return Keys[key];
+			}
+
+			inline bool HasControl(unsigned char key) const
+			{
+				return (64 & Mods[key]) == 64;
 			}
 		};
 	}

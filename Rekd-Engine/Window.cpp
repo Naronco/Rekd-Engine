@@ -217,6 +217,26 @@ bool Rekd2D::Core::Window::PollEvent(Event* e)
 		ne.User.Data1 = ev.user.data1;
 		ne.User.Data2 = ev.user.data2;
 		break;
+	case SDL_TEXTINPUT:
+		if (ev.text.windowID == WindowID)
+		{
+			ne.Type = EventType::Text;
+			ne.Text.Append = true;
+			ne.Text.Text = std::string(ev.text.text);
+		}
+		break;
+	case SDL_TEXTEDITING:
+		if (ev.edit.windowID == WindowID)
+		{
+			ne.Type = EventType::Text;
+			ne.Text.Append = false;
+			ne.Text.Text = std::string(ev.text.text);
+			ne.Text.Cursor = ev.edit.start;
+			ne.Text.SelectionLength = ev.edit.length;
+		}
+		break;
+	default:
+		return true;
 	}
 	*e = ne;
 	return true;

@@ -3,6 +3,7 @@
 
 #include "IComponent.h"
 #include "ComponentFlag.h"
+#include "FontLoader.h"
 
 namespace Rekd2D
 {
@@ -21,9 +22,11 @@ namespace Rekd2D
 			void Load();
 			unsigned int GetFlags();
 			std::string Text;
+
+			FontLoader* m_Font;
+			float LineHeight;
 		protected:
 			bool Focused = false;
-			Texture* m_Font;
 		};
 	}
 }

@@ -5,6 +5,7 @@
 #include "KeyboardState.h"
 #include "TextComponent.h"
 #include "ComponentFlag.h"
+#include <algorithm>
 
 namespace Rekd2D
 {
@@ -22,12 +23,17 @@ namespace Rekd2D
 			void Click(unsigned char button);
 			void Load();
 			unsigned int GetFlags();
+			void OnText(bool append, const std::string& text, int cursor, int selection);
 			void OnKeyboard(KeyboardState ks, KeyboardState old);
+
+			FontLoader* m_Font;
 		protected:
 			bool Focused = false;
 			Texture* Textbox;
 			Texture* TextboxFocused;
 			TextComponent* m_Label;
+			int cursor;
+			int selLength;
 		};
 	}
 }

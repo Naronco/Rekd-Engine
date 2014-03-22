@@ -29,5 +29,6 @@ private:
 	KeyboardState oldState;
 	Shader* m_Shader;
 	Texture* m_Texture;
+	float t = 0;
 	std::vector<b2PrismaticJointDef*> prismatics;
 };

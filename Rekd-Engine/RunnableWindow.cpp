@@ -70,3 +70,14 @@ void Rekd2D::Core::RunnableWindow::AddComponent(IComponent* component)
 	component->Load(m_ContentManager);
 	m_Components.insert(m_Components.begin(), component);
 }
+
+void Rekd2D::Core::RunnableWindow::KeyDown(bool append, const std::string& text, int cursor, int selection)
+{
+	for (std::vector<IComponent*>::iterator it = m_Components.begin(); it != m_Components.end(); ++it)
+	{
+		if ((ComponentFlag::HookText & (*it)->GetFlags()) == ComponentFlag::HookText)
+		{
+			(*it)->OnText(append, text, cursor, selection);
+		}
+	}
+}

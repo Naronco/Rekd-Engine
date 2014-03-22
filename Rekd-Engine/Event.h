@@ -32,7 +32,8 @@ namespace Rekd2D
 				ControllerAdded,
 				ControllerRemoved,
 				DropFile,
-				User
+				User,
+				Text
 			};
 		}
 
@@ -101,6 +102,14 @@ namespace Rekd2D
 			void* Data2;
 		};
 
+		struct TextData
+		{
+			bool Append;
+			std::string Text;
+			int Cursor;
+			int SelectionLength;
+		};
+
 		struct Event
 		{
 			Enum::EventType Type;
@@ -116,6 +125,7 @@ namespace Rekd2D
 			MotionData MouseMove;
 			WindowData WindowEvent;
 			UserData User;
+			TextData Text;
 			char* File;
 		};
 	}

@@ -22,6 +22,11 @@ void Rekd2D::Core::TextboxComponent::Render(Renderer* renderer)
 	renderer->DrawRect(m_Transform, Color(255, 255, 255));
 	m_Label->m_Transform = m_Transform;
 	m_Label->Render(renderer);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	Matrix3x3F trans = m_Transform;
+	trans.Translate(cursor * 10, 0);
+	trans.Scale(selLength * 10, 1);
+	renderer->DrawRect(trans, Color(0, 0, 100, 50));
 }
 
 void Rekd2D::Core::TextboxComponent::SetFlag(unsigned int type, unsigned int value)
@@ -29,25 +34,35 @@ void Rekd2D::Core::TextboxComponent::SetFlag(unsigned int type, unsigned int val
 	if (type == ComponentFlag::Focusable) Focused = value == 1;
 }
 
+void Rekd2D::Core::TextboxComponent::OnText(bool append, const std::string& text, int cursor, int selection)
+{
+	if (Focused)
+	{
+		if (append)
+		{
+			m_Label->Text += text;
+		}
+		else
+		{
+			m_Label->Text = text;
+		}
+	}
+}
+
 void Rekd2D::Core::TextboxComponent::OnKeyboard(KeyboardState ks, KeyboardState old)
 {
 	if (Focused)
 	{
-		for (unsigned char i = 32; i < 127; i++)
+		if (ks.Keys[SDLK_BACKSPACE] && !old.Keys[SDLK_BACKSPACE]) m_Label->Text = m_Label->Text.substr(0, std::max(0u, m_Label->Text.length() - 1));
+		if (ks.Keys[SDLK_v] && !old.Keys[SDLK_v] && ks.HasControl(SDLK_v))
 		{
-			if (ks.IsKeyDown(i) && !old.IsKeyDown(i))
+			HANDLE clip;
+			if (OpenClipboard(NULL))
 			{
-				if (ks.IsKeyDown(SDLK_LSHIFT))
-				{
-					m_Label->Text += toupper(ks.Keys[i]);
-				}
-				else
-				{
-					m_Label->Text += ks.Keys[i];
-				}
+				clip = GetClipboardData(CF_TEXT);
+				m_Label->Text += (char*)clip;
 			}
 		}
-		if (ks.IsKeyDown(8) && !old.IsKeyDown(8)) m_Label->Text = m_Label->Text.substr(0, m_Label->Text.length() - 1);
 	}
 }
 
@@ -61,9 +76,10 @@ void Rekd2D::Core::TextboxComponent::Load(ContentManager* content)
 	TextboxFocused = content->LoadTexture("TextBoxActive.png", false);
 	m_Label = new TextComponent();
 	m_Label->Load(content);
+	m_Label->m_Font = m_Font;
 }
 
 unsigned int Rekd2D::Core::TextboxComponent::GetFlags()
 {
-	return ComponentFlag::Focusable | ComponentFlag::HookKeyboard;
+	return ComponentFlag::Focusable | ComponentFlag::HookText | ComponentFlag::HookKeyboard;
 }

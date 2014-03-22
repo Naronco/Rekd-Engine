@@ -26,6 +26,7 @@ namespace Rekd2D
 			virtual void Update(unsigned int time) = 0;
 			virtual void Render(unsigned int time) = 0;
 			virtual void Unload() = 0;
+			virtual void KeyDown(bool append, const std::string& text, int cursor, int selection) {}
 			///<summary>Entry point for a Game</summary>
 			///<param name="title">Window title</param>
 			///<param name="width">Window width</param>

@@ -21,6 +21,7 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		"void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }",
 		"uniform sampler2D sampler; void main() { gl_FragColor = texture2D(sampler, gl_TexCoord[0].st); }"
 		);
+	SDL_StartTextInput();
 	Load();
 	Event e;
 	m_Window->Show();
@@ -69,12 +70,18 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 			else if (e.Type == Enum::EventType::KeyDown)
 			{
 				ks.Keys[e.Keyboard.KeyCode] = true;
+				ks.Mods[e.Keyboard.KeyCode] = e.Keyboard.Modifiers;
 				Keyboard::SetState(ks);
 			}
 			else if (e.Type == Enum::EventType::KeyUp)
 			{
 				ks.Keys[e.Keyboard.KeyCode] = false;
+				ks.Mods[e.Keyboard.KeyCode] = 0;
 				Keyboard::SetState(ks);
+			}
+			else if (e.Type == Enum::EventType::Text)
+			{
+				KeyDown(e.Text.Append, e.Text.Text, e.Text.Cursor, e.Text.SelectionLength);
 			}
 		}
 		m_Renderer->Clear(Color(43, 78, 124));

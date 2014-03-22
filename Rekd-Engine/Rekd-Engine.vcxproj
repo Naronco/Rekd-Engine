@@ -94,6 +94,7 @@
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="FontLoader.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Keyboard.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="BezierCurve.cpp" />
     <ClCompile Include="CheckboxComponent.cpp" />
     <ClCompile Include="ContentManager.cpp" />
+    <ClCompile Include="FontLoader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />

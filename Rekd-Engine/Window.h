@@ -1,6 +1,7 @@
 #ifndef REKD_WINDOW_H_
 #define REKD_WINDOW_H_
 
+#include <string>
 #include "Event.h"
 #include "Error.h"
 #include <gl\glew.h>

@@ -20,6 +20,7 @@ namespace Rekd2D
 			virtual void Deinit() = 0;
 			void Unload();
 			void Unfocus();
+			void KeyDown(bool append, const std::string& text, int cursor, int selection);
 
 			void AddComponent(IComponent* component);
 

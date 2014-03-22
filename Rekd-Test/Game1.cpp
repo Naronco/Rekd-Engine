@@ -273,11 +273,9 @@ void Game1::Load()
 {
 	m_Texture = new Texture();
 	m_Texture->Load("test.png");
-	m_Font = new Texture();
-	m_Font->Load("font.png");
 	m_Shader = new Shader(
 		"varying vec4 color; void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; color = gl_Color; }",
-		"varying vec4 color; uniform sampler2D sampler; void main() { gl_FragColor = vec4(texture2D(sampler, gl_TexCoord[0].st).rgb * color.rgb, texture2D(sampler, gl_TexCoord[0].st).a); }"
+		"uniform float time; varying vec4 color; uniform sampler2D sampler; void main() { gl_FragColor = vec4(time - texture2D(sampler, gl_TexCoord[0].st).rgb * color.rgb, texture2D(sampler, gl_TexCoord[0].st).a); }"
 		);
 	m_Shader->Bind();
 	m_PostProcess->SetVertex("void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; gl_TexCoord[0] = gl_MultiTexCoord0; }");
@@ -298,8 +296,10 @@ void Game1::Unload()
 
 void Game1::Update(unsigned int time)
 {
+	t += 1;
 	KeyboardState cState = Keyboard::GetState();
 	MouseState mState = Mouse::GetState();
+	m_Shader->Set("time", t);
 	world->Step(time * 0.001f, 6, 2);
 	if (cState.IsKeyDown(SDLK_y) && !oldState.IsKeyDown(SDLK_y))
 	{
@@ -352,9 +352,6 @@ void Game1::Render(unsigned int time)
 	m_Shader->Bind();
 
 	b2Vec2 gpos = ground->GetPosition();
-
-	m_Renderer->DrawString("gflkhjnlghngfdhnilILNILSIGFDL561486486:;:_.,+#", Vector2F(32, 32), Color(255, 255, 255));
-	m_Renderer->DrawString("99458455.,897861563-@web.de", Vector2F(32, 48), Color(0, 120, 0));
 
 	m_Texture->Bind();
 
