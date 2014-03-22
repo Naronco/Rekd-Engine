@@ -16,7 +16,7 @@ namespace Rekd2D
 		{
 		public:
 			Texture();
-			void Load(const std::string &file, bool flat = false);
+			bool Load(const std::string &file, bool flat = false);
 			void Bind();
 			void Unload();
 		protected:

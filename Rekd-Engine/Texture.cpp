@@ -4,12 +4,13 @@ Rekd2D::Core::Texture::Texture()
 {
 }
 
-void Rekd2D::Core::Texture::Load(const std::string &file, bool flat)
+bool Rekd2D::Core::Texture::Load(const std::string &file, bool flat)
 {
 	m_Surface = IMG_Load(file.c_str());
 	if (!m_Surface)
 	{
 		std::cout << "Cannot load " << file << std::endl;
+		return false;
 	}
 	int mode = GL_BITMAP;
 	if (m_Surface->format->BitsPerPixel == 24) { // RGB 24bit
@@ -36,6 +37,7 @@ void Rekd2D::Core::Texture::Load(const std::string &file, bool flat)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
+	return true;
 }
 
 void Rekd2D::Core::Texture::Bind()

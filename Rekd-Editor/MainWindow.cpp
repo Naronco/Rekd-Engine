@@ -6,6 +6,8 @@ MainWindow::MainWindow()
 
 void MainWindow::Load()
 {
+	font = new FontLoader();
+	if (!font->Load("Calibri.fnt")) std::cout << "No font D:" << std::endl;
 	AddCheckbox(32, 32);
 	AddTextbox(32, 70);
 	AddTextbox(32, 110);
@@ -32,5 +34,6 @@ void MainWindow::AddTextbox(int x, int y)
 	transform.Translate(x, y);
 	transform.Scale(128, 32);
 	textbox->m_Transform = transform;
+	textbox->m_Font = font;
 	AddComponent(textbox);
 }

@@ -7,6 +7,7 @@
 #include "Rect.h"
 #include "Vector2.h"
 #include "Matrix3x3.h"
+#include "FontLoader.h"
 
 namespace Rekd2D
 {
@@ -50,12 +51,7 @@ namespace Rekd2D
 			/// <param name="text">Content</param>
 			/// <param name="pos">Position</param>
 			/// <param name="c">Color</param>
-			void DrawString(std::string text, Vector2F pos, Color c);
-			/// <summary>Renders a Letter</summary>
-			/// <param name="letter">Letter</param>
-			/// <param name="pos">Position</param>
-			/// <param name="c">Color</param>
-			void DrawChar(char letter, Vector2F pos, Color c);
+			void DrawString(std::string text, Vector2F pos, FontLoader* font, float tHeight, Color c);
 			/// <summary>Converts a Surface to a Texture</summary>
 			/// <param name="surf">Surface to be converted</param>
 			int SurfaceToTexture(SDL_Surface* surf);

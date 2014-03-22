@@ -133,16 +133,14 @@ void Rekd2D::Core::Renderer::Dispose()
 	SDL_GL_DeleteContext(m_Context);
 }
 
-void Rekd2D::Core::Renderer::DrawString(std::string text, Vector2F pos, Color c)
+void Rekd2D::Core::Renderer::DrawString(std::string text, Vector2F pos, FontLoader* font, float tHeight, Color c)
 {
+	int x = 0;
+	float scale = tHeight / (float)font->lineHeight;
 	for (int i = 0; i < text.length(); i++)
 	{
-		DrawChar(text[i], pos + Vector2F(10 * i, 0), c);
+		font->GetTexture(text[i])->Bind();
+		DrawRect(RectF(pos + Vector2F(x * scale + font->GetData(text[i]).xoffset * scale, font->GetData(text[i]).yoffset * scale), Vector2F(font->GetData(text[i]).width * scale, font->GetData(text[i]).height * scale)), font->GetTextureCoords(text[i]), c);
+		x += font->GetData(text[i]).xadvance;
 	}
-}
-
-void Rekd2D::Core::Renderer::DrawChar(char letter, Vector2F pos, Color c)
-{
-	if (letter < 33 || letter > 126) return;
-	DrawRect(RectF(pos, Vector2F(10, 16)), RectF((letter - 33) * 10 / 940.0f, 0, 10 / 940.0f, 1), c);
 }

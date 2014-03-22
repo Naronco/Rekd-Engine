@@ -13,4 +13,6 @@ public:
 	void Deinit();
 	void AddCheckbox(int x, int y);
 	void AddTextbox(int x, int y);
+
+	FontLoader* font;
 };
