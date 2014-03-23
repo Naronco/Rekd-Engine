@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rekd-Test", "Rekd-Test\Rekd
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rekd-Editor", "Rekd-Editor\Rekd-Editor.vcxproj", "{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example-Game", "Example-Game\Example-Game.vcxproj", "{0C34C684-38FB-4DAA-9565-737F48388EE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -30,6 +32,10 @@ Global
 		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Debug|Win32.Build.0 = Debug|Win32
 		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Release|Win32.ActiveCfg = Release|Win32
 		{8721A0AB-C6EE-4A3A-BA7D-1C0C6C5900E0}.Release|Win32.Build.0 = Release|Win32
+		{0C34C684-38FB-4DAA-9565-737F48388EE6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C34C684-38FB-4DAA-9565-737F48388EE6}.Debug|Win32.Build.0 = Debug|Win32
+		{0C34C684-38FB-4DAA-9565-737F48388EE6}.Release|Win32.ActiveCfg = Release|Win32
+		{0C34C684-38FB-4DAA-9565-737F48388EE6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
