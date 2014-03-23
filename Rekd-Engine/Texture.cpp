@@ -12,6 +12,7 @@ bool Rekd2D::Core::Texture::Load(const std::string &file, bool flat)
 		std::cout << "Cannot load " << file << std::endl;
 		return false;
 	}
+	m_Size = Vector2F(m_Surface->w, m_Surface->h);
 	int mode = GL_BITMAP;
 	if (m_Surface->format->BitsPerPixel == 24) { // RGB 24bit
 		mode = GL_RGB;
@@ -49,4 +50,9 @@ void Rekd2D::Core::Texture::Unload()
 {
 	SDL_FreeSurface(m_Surface);
 	glDeleteTextures(1, &m_TextureId);
+}
+
+Rekd2D::Core::Vector2F Rekd2D::Core::Texture::GetSize()
+{
+	return m_Size;
 }

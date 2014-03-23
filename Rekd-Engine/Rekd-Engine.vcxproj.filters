@@ -126,6 +126,12 @@
     <ClInclude Include="FontLoader.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PictureComponent.h">
+      <Filter>Interfacedateien\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -181,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="FontLoader.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureComponent.cpp">
+      <Filter>Interfacedateien\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
