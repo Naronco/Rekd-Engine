@@ -32,6 +32,13 @@ namespace Rekd2D
 			///<param name="width">Window width</param>
 			///<param name="height">Window height</param>
 			void Run(char* title, unsigned int width, unsigned int height);
+			///<summary>Entry point for a Game with viewport</summary>
+			///<param name="title">Window title</param>
+			///<param name="width">Viewport width</param>
+			///<param name="height">Viewport height</param>
+			///<param name="windowWidth">Window width</param>
+			///<param name="windowHeight">Window height</param>
+			void Run(char* title, unsigned int width, unsigned int height, unsigned int windowWidth, unsigned int windowHeight);
 
 			void InitGL(int maj, int min)
 			{

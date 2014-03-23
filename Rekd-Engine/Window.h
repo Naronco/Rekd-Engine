@@ -20,6 +20,13 @@ namespace Rekd2D
 			/// <param name="width">Width for the Window</param>
 			/// <param name="height">Height for the Window</param>
 			Window(char* title, unsigned int width, unsigned int height);
+			/// <summary>Creates a hidden Window with viewport</summary>
+			/// <param name="title">Title for the Window</param>
+			/// <param name="width">Width for the Viewport</param>
+			/// <param name="height">Height for the Viewport</param>
+			/// <param name="wwidth">Width for the Window</param>
+			/// <param name="wheight">Height for the Window</param>
+			Window(char* title, unsigned int width, unsigned int height, unsigned int wwidth, unsigned int wheight);
 			/// <summary>Shows the Window if it is hidden</summary>
 			void Show();
 			/// <summary>Hides the Window if it is shown</summary>

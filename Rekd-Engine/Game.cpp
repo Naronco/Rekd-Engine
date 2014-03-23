@@ -2,9 +2,14 @@
 
 void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int height)
 {
+	Run(title, width, height, width, height);
+}
+
+void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int height, unsigned int windowWidth, unsigned int windowHeight)
+{
 	SDL_Init(SDL_INIT_EVERYTHING);
 	InitGL(2, 1);
-	m_Window = new Window(title, width, height);
+	m_Window = new Window(title, width, height, windowWidth, windowHeight);
 	int err = glewInit();
 	if (err != 0) std::cout << "GLEW ERROR " << err << ": " << glewGetErrorString(err) << std::endl;
 	Init();

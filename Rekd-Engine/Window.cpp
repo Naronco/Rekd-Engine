@@ -1,12 +1,16 @@
 #include "Window.h"
 
-Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int height)
+Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int height) : Window(title, width, height, width, height)
 {
-	m_Window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+}
+
+Rekd2D::Core::Window::Window(char* title, unsigned int width, unsigned int height, unsigned int wwidth, unsigned int wheight)
+{
+	m_Window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, wwidth, wheight, SDL_WINDOW_HIDDEN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 	if (m_Window != NULL)
 	{
-		m_Width = width;
-		m_Height = height;
+		m_Width = wwidth;
+		m_Height = wheight;
 		Running = true;
 		m_Context = SDL_GL_CreateContext(m_Window);
 		glMatrixMode(GL_PROJECTION);
