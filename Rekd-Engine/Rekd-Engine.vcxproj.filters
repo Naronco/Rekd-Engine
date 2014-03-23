@@ -132,6 +132,9 @@
     <ClInclude Include="Action.h">
       <Filter>Interfacedateien</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Interfacedateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">

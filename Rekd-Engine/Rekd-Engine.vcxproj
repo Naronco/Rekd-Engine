@@ -108,6 +108,7 @@
     <ClInclude Include="PredefinedShader.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RunnableWindow.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="TextboxComponent.h" />
     <ClInclude Include="TextComponent.h" />

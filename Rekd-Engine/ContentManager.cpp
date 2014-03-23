@@ -5,10 +5,7 @@ Rekd2D::Core::ContentManager::ContentManager(const std::string& root)
 	if (root.length() == 0) m_Root = "";
 	else
 	{
-		if (m_Root.compare(m_Root.length() - 1, 1, "/") == 0)
-			m_Root = root;
-		else
-			m_Root = root + "/";
+		m_Root = root + "/";
 	}
 }
 
