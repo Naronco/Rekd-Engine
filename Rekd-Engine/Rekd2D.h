@@ -37,5 +37,6 @@
 #include "FontLoader.h"
 #include "Action.h"
 #include "Scene.h"
+#include "LanguageLoader.h"
 
 #endif

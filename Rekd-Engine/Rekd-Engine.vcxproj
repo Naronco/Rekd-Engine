@@ -100,6 +100,7 @@
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="KeyboardState.h" />
+    <ClInclude Include="LanguageLoader.h" />
     <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="Mouse.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="FontLoader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="LanguageLoader.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="PictureComponent.cpp" />
     <ClCompile Include="PredefinedShader.cpp" />

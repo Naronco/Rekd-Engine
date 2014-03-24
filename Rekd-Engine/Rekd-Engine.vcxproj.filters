@@ -135,6 +135,9 @@
     <ClInclude Include="Scene.h">
       <Filter>Interfacedateien</Filter>
     </ClInclude>
+    <ClInclude Include="LanguageLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="PictureComponent.cpp">
       <Filter>Interfacedateien\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LanguageLoader.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
