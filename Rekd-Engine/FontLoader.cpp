@@ -119,6 +119,7 @@ Rekd2D::Core::Texture* Rekd2D::Core::FontLoader::GetTexture(unsigned int c)
 	}
 	return m_Maps[m_Characters[c].page];
 }
+
 Rekd2D::Core::BMChar Rekd2D::Core::FontLoader::GetData(unsigned int c)
 {
 	std::map<unsigned int, BMChar>::iterator it = m_Characters.find(c);
@@ -127,4 +128,15 @@ Rekd2D::Core::BMChar Rekd2D::Core::FontLoader::GetData(unsigned int c)
 		return BMChar();
 	}
 	return m_Characters[c];
+}
+
+float Rekd2D::Core::FontLoader::GetWidth(const std::string& text, float tHeight)
+{
+	int x = 0;
+	float scale = tHeight / (float)lineHeight;
+	for (int i = 0; i < text.length(); i++)
+	{
+		x += GetData(text[i]).xadvance;
+	}
+	return x * scale;
 }

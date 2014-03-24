@@ -92,11 +92,12 @@ void Rekd2D::Core::Game::Run(char* title, unsigned int width, unsigned int heigh
 		m_Renderer->Clear(Color(43, 78, 124));
 		Update(delta);
 		Render(delta);
+
 		m_Window->UnbindFramebuffer();
 		m_Renderer->Clear(Color(43, 78, 124));
 		glLoadIdentity();
-		m_Window->BindScreentex();
 		m_PostProcess->Bind();
+		m_Window->BindScreentex();
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 1);
 		glVertex2f(0, 0);

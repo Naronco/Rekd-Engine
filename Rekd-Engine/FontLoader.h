@@ -25,6 +25,7 @@ namespace Rekd2D
 			Texture* GetTexture(unsigned int c);
 			RectF GetTextureCoords(unsigned int c);
 			BMChar GetData(unsigned int c);
+			float GetWidth(const std::string& text, float tHeight);
 
 			int m_Width, m_Height;
 			int lineHeight;

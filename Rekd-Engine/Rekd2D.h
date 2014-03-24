@@ -35,5 +35,7 @@
 #include "CheckboxComponent.h"
 #include "TextboxComponent.h"
 #include "FontLoader.h"
+#include "Action.h"
+#include "Scene.h"
 
 #endif

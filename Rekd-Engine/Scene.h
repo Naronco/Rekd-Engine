@@ -13,7 +13,7 @@ namespace Rekd2D
 			Scene();
 
 			virtual void Load(ContentManager* content) = 0;
-			virtual void Render(unsigned int time) = 0;
+			virtual void Render(Renderer* renderer, unsigned int time) = 0;
 			virtual void Update(unsigned int time) = 0;
 		protected:
 		};

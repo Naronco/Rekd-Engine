@@ -52,9 +52,6 @@ namespace Rekd2D
 			/// <param name="pos">Position</param>
 			/// <param name="c">Color</param>
 			void DrawString(std::string text, Vector2F pos, FontLoader* font, float tHeight, Color c);
-			/// <summary>Converts a Surface to a Texture</summary>
-			/// <param name="surf">Surface to be converted</param>
-			int SurfaceToTexture(SDL_Surface* surf);
 			/// <summary>Disposes the Context</summary>
 			void Dispose();
 		protected:

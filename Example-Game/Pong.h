@@ -13,7 +13,13 @@ public:
 	void Update(unsigned int time);
 	void Render(unsigned int time);
 	void Unload();
+	std::string ReadFile(const std::string &filename, const std::string &fallback);
 
 private:
 	ContentManager* Content;
+	Texture* Background;
+	Texture* Button;
+	Shader* m_Shader;
+	FontLoader* m_Font;
+	int scene;
 };
