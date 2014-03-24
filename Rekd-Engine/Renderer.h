@@ -52,6 +52,11 @@ namespace Rekd2D
 			/// <param name="pos">Position</param>
 			/// <param name="c">Color</param>
 			void DrawString(std::string text, Vector2F pos, FontLoader* font, float tHeight, Color c);
+			/// <summary>Renders a Character</summary>
+			/// <param name="c">Character</param>
+			/// <param name="pos">Position</param>
+			/// <param name="c">Color</param>
+			void DrawChar(char c, Vector2F pos, FontLoader* font, float tHeight, Color col);
 			/// <summary>Disposes the Context</summary>
 			void Dispose();
 		protected:

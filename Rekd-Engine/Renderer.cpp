@@ -123,3 +123,10 @@ void Rekd2D::Core::Renderer::DrawString(std::string text, Vector2F pos, FontLoad
 		x += font->GetData(text[i]).xadvance;
 	}
 }
+
+void Rekd2D::Core::Renderer::DrawChar(char c, Vector2F pos, FontLoader* font, float tHeight, Color col)
+{
+	float scale = tHeight / (float)font->lineHeight;
+	font->GetTexture(c)->Bind();
+	DrawRect(RectF(pos + Vector2F(font->GetData(c).xoffset * scale, font->GetData(c).yoffset * scale), Vector2F(font->GetData(c).width * scale, font->GetData(c).height * scale)), font->GetTextureCoords(c), col);
+}

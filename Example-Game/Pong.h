@@ -19,7 +19,13 @@ private:
 	ContentManager* Content;
 	Texture* Background;
 	Texture* Button;
+	Texture* Slider;
+	Texture* Grabber;
 	Shader* m_Shader;
 	FontLoader* m_Font;
+	LanguageLoader* m_Lang;
+
+	MouseState oldState;
+	Vector3F neon;
 	int scene;
 };

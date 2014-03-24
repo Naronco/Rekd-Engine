@@ -1,5 +1,6 @@
 uniform sampler2D sampler;
 uniform vec2 texelSize;
+uniform vec3 neonColor;
 void main()
 {
 	vec3 col = texture2D(sampler, gl_TexCoord[0].st).rgb;
@@ -11,5 +12,6 @@ void main()
 		}
 	}
 	col /= 37;
-	gl_FragColor = vec4(texture2D(sampler, gl_TexCoord[0].st).rgb + col * 0.75, 1);
+	col *= neonColor;
+	gl_FragColor = vec4(texture2D(sampler, gl_TexCoord[0].st).rgb + col * 0.5, 1);
 }
